@@ -28,7 +28,7 @@ public class LibroDomain {
 	private String _name;
 	
 	@Column(name = "anho", nullable = false, unique = true)
-	private String _anho;
+	private Integer _anho;
 	
 	@ManyToOne
 	private AutorDomain _autor;
@@ -52,11 +52,11 @@ public class LibroDomain {
 		_name = name;
 	}
 	
-	public String getAnho() {
+	public Integer getAnho() {
 		return _anho;
 	}
 
-	public void setAnho(String anho) {
+	public void setAnho(Integer anho) {
 		_anho = anho;
 	}
 }

@@ -11,11 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.prestamo.PrestamoDomain;
 
 @Entity
 @Table(name = "estado_general")
-public class Estado_generalDomain {
+public class Estado_generalDomain extends BaseDomain{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
