@@ -13,9 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sd.uni.biblioteca.domain.estado.EstadoDomain;
 import com.sd.uni.biblioteca.domain.estado_general.Estado_generalDomain;
-import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 import com.sd.uni.biblioteca.domain.prestamo_detalle.Prestamo_detalleDomain;
 import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
 
@@ -55,7 +53,7 @@ public class PrestamoDomain {
 		return _fecha_prestamo;
 	}
 
-	public void setFecha_prestamo( date fecha_prestamo) {
+	public void setFecha_prestamo( Date fecha_prestamo) {
 		_fecha_prestamo = fecha_prestamo;
 	}
 	
@@ -63,8 +61,8 @@ public class PrestamoDomain {
 		return _fecha_limite;
 	}
 
-	public void setFecha_limite(String fecha_limite) {
-		_estado_general = fecha_limite;
+	public void setFecha_limite(Date fecha_limite) {
+		_fecha_limite = fecha_limite;
 	}
 	
 }
