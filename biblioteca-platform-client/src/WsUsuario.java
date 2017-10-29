@@ -1,3 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import reserva.ReservaManager;
 import usuario.UsuarioManager;
 
 
@@ -19,6 +23,11 @@ public class WsUsuario {
 			System.out.println( "\nBUSCAR POR PROPIEDAD" );
 			s.getByPropertyUsuario("Liliana");
 		}
+		
+		
+		
+			
+		}
 	
 
-}
+
