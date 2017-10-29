@@ -42,7 +42,7 @@ public class RolResource {
 	}
 
 	@POST
-	public RolDTO save(RolDTO country) {
-		return rolService.save(country);
+	public RolDTO save(RolDTO rol) {
+		return rolService.save(rol);
 	}
 }

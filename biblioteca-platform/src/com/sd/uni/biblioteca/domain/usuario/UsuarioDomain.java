@@ -1,27 +1,24 @@
-package com.sd.uni.biblioteca.domain.rol;
+package com.sd.uni.biblioteca.domain.usuario;
 
 
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 
 
-
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
-import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
+import com.sd.uni.biblioteca.domain.rol.RolDomain;
 
 @Entity
-@Table(name = "rol")
-public class RolDomain extends BaseDomain {
+@Table(name = "usuario")
+public class UsuarioDomain extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
@@ -30,8 +27,11 @@ public class RolDomain extends BaseDomain {
 	@Column(name = "nombre", nullable = false, unique = true)
 	private String _nombre;
 	
-	@OneToMany(mappedBy = "_rol")
-	private Set<UsuarioDomain> _usuarios = new HashSet<>();
+	@Column(name = "contrasenha", nullable = false, unique = false)
+	private String _contrasenha;
+
+	@ManyToOne
+	private RolDomain _rol;
 	
 	public Integer getId() {
 		return _id;
@@ -49,12 +49,21 @@ public class RolDomain extends BaseDomain {
 		_nombre = nombre;
 	}
 	
-	public Set<UsuarioDomain> getUsuarios() {
-		return _usuarios;
+
+	public String getContrasenha() {
+		return _contrasenha;
 	}
 
-	public void setUsuarios(Set<UsuarioDomain> usuarios) {
-		this._usuarios = usuarios;
+	public void setContrasenha(String contrasenha) {
+		_contrasenha = contrasenha;
+	}
+	
+	public RolDomain getRol() {
+		return _rol;
+	}
+
+	public void setRol(RolDomain rol) {
+		_rol = rol;
 	}
 
 }

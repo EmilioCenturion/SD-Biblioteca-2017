@@ -9,15 +9,15 @@ import com.sd.uni.biblioteca.dto.base.BaseDTO;
 public class RolDTO extends BaseDTO {
 
 	private static final long serialVersionUID = 1L;
-	private String _name;
+	private String _nombre;
 
 	@XmlElement
-	public String getName() {
-		return _name;
+	public String getNombre() {
+		return _nombre;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setNombre(String nombre) {
+		_nombre = nombre;
 	}
 
 }

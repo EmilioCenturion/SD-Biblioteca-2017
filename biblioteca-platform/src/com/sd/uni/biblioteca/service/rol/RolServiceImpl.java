@@ -67,7 +67,7 @@ public class RolServiceImpl extends BaseServiceImpl<RolDTO, RolDomain, RolDaoImp
 	protected RolDTO convertDomainToDto(RolDomain domain) {
 		final RolDTO dto = new RolDTO();
 		dto.setId(domain.getId());
-		dto.setName(domain.getName());
+		dto.setNombre(domain.getNombre());
 		return dto;
 	}
 
@@ -75,7 +75,7 @@ public class RolServiceImpl extends BaseServiceImpl<RolDTO, RolDomain, RolDaoImp
 	protected RolDomain convertDtoToDomain(RolDTO dto) {
 		final RolDomain domain = new RolDomain();
 		domain.setId(dto.getId());
-		domain.setName(dto.getName());
+		domain.setNombre(dto.getNombre());
 		return domain;
 	}
 

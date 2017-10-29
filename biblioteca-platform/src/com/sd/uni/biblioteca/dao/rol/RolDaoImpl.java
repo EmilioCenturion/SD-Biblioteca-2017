@@ -44,7 +44,7 @@ public class RolDaoImpl extends BaseDaoImpl<RolDomain> implements IRolDao {
 
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(RolDomain.class);
-		Criterion nameCriterion =Restrictions.ilike("_name", textToFind);
+		Criterion nameCriterion =Restrictions.ilike("_nombre", textToFind);
 		Criterion idCriterion = null;
 		if (StringUtils.isNumeric(textToFind)) {
 			idCriterion=Restrictions.eq("_id", Integer.valueOf(textToFind));
@@ -65,7 +65,7 @@ public class RolDaoImpl extends BaseDaoImpl<RolDomain> implements IRolDao {
 		if (StringUtils.isNumeric(textToFind)) {
 			id = Integer.valueOf(textToFind);
 		}
-		Query q = sessionFactory.getCurrentSession().createQuery("from RolDomain where _name like :parameter or _id=:id");
+		Query q = sessionFactory.getCurrentSession().createQuery("from RolDomain where _nombre like :parameter or _id=:id");
 		q.setParameter("parameter", "%" + textToFind + "%");
 		q.setParameter("id", id);
 		return q.list();
