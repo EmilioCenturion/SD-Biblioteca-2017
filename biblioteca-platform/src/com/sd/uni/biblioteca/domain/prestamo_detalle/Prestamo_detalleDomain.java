@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.estado.EstadoDomain;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 import com.sd.uni.biblioteca.domain.prestamo.PrestamoDomain;
@@ -20,7 +21,7 @@ import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
 
 @Entity
 @Table(name = "prestamo_detalle")
-public class Prestamo_detalleDomain {
+public class Prestamo_detalleDomain extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)

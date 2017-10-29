@@ -13,13 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.estado_general.Estado_generalDomain;
 import com.sd.uni.biblioteca.domain.prestamo_detalle.Prestamo_detalleDomain;
 import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
 
 @Entity
 @Table(name = "prestamo")
-public class PrestamoDomain {
+public class PrestamoDomain extends BaseDomain{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
