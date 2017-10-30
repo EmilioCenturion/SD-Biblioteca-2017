@@ -25,8 +25,8 @@ public class CategoriaDomain {
 	@Column(name = "descripcion", nullable = false, unique = true)
 	private String _descripcion;
 	
-	@OneToMany(mappedBy = "_rol")
-	private Set<LibroDomain> _libro = new HashSet<>();
+	//@OneToMany(mappedBy = "_categoria")
+	//private Set<LibroDomain> _libro = new HashSet<>();
 	
 	public Integer getId() {
 		return _id;

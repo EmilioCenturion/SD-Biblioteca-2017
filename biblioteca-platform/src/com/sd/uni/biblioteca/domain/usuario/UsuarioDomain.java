@@ -2,18 +2,26 @@ package com.sd.uni.biblioteca.domain.usuario;
 
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 
 
+
+
+
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
+import com.sd.uni.biblioteca.domain.reserva.ReservaDomain;
 import com.sd.uni.biblioteca.domain.rol.RolDomain;
 
 @Entity
@@ -32,6 +40,9 @@ public class UsuarioDomain extends BaseDomain {
 
 	@ManyToOne
 	private RolDomain _rol;
+	
+	@OneToMany(mappedBy = "_usuario")
+	private Set<ReservaDomain> _reservas = new HashSet<>();
 	
 	public Integer getId() {
 		return _id;
@@ -64,6 +75,14 @@ public class UsuarioDomain extends BaseDomain {
 
 	public void setRol(RolDomain rol) {
 		_rol = rol;
+	}
+	
+	public Set<ReservaDomain> getReservas() {
+		return _reservas;
+	}
+
+	public void setReservas(Set<ReservaDomain> reservas) {
+		this._reservas = reservas;
 	}
 
 }
