@@ -36,7 +36,7 @@ public class SalidaManager extends AbstractBaseManager {
 		SalidaDTO salidaDTO = new SalidaDTO();
 		salidaDTO.setDescripcion("Probablemente haya sido robado");
 		salidaDTO.setFecha(fecha);
-		salidaDTO.setMotivoEntradaId(motivoSalidaId);
+		salidaDTO.setMotivosalidaId(motivoSalidaId);
 		
 		getJerseyClient().resource(getBaseUrl() + "/salida").entity(salidaDTO).post(SalidaDTO.class);
 	}

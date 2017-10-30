@@ -81,13 +81,13 @@ public class WsBiblioteca {
 		}
 
 		public static void salidas(){
-			SalidaManager s = new EntradaManager();
+			SalidaManager s = new SalidaManager();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 			
 			try {
 				
-				s.addEntrada("Descripcion uno", formatter.parse("20-06-2017") , 1);
-				s.addEntrada("Cualquier descripcion 2", formatter.parse("11-08-2017"), 2);
+				s.addsalida("Descripcion uno", formatter.parse("20-06-2017") , 1);
+				s.addSalida("Cualquier descripcion 2", formatter.parse("11-08-2017"), 2);
 			
 			} catch (ParseException e) {
 				
