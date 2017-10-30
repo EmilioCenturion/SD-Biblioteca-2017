@@ -12,7 +12,7 @@ public class WsBiblioteca {
 			usuarios();
 			entradas();
 			reservas();
-			
+			salidas();
 		}
 	
 		public static void usuarios(){
@@ -78,6 +78,28 @@ public class WsBiblioteca {
 
 			/*System.out.println( "\nBUSCAR POR PROPIEDAD" );
 			s.getByPropertyReserva("2");*/
+		}
+
+		public static void salidas(){
+			SalidaManager s = new EntradaManager();
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+			
+			try {
+				
+				s.addEntrada("Descripcion uno", formatter.parse("20-06-2017") , 1);
+				s.addEntrada("Cualquier descripcion 2", formatter.parse("11-08-2017"), 2);
+			
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+
+			System.out.println( "\nBUSCAR POR ID" );
+			s.getByIdSalida(1);
+
+			System.out.println("\nTODOS LOS DATOS");
+			s.getAllSalidas();
+
 		}
 
 
