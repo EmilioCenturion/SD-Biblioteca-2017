@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sd.uni.biblioteca.dao.rol.IRolDao;
+import com.sd.uni.biblioteca.dao.usuario.IUsuarioDao;
+import com.sd.uni.biblioteca.dao.estado_general.IEstadoGeneralDao;
 import com.sd.uni.biblioteca.dao.prestamo.IPrestamoDao;
 import com.sd.uni.biblioteca.dao.prestamo.PrestamoDaoImpl;
 import com.sd.uni.biblioteca.domain.prestamo.PrestamoDomain;
@@ -21,10 +23,13 @@ import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 public class PrestamoServiceImpl extends BaseServiceImpl<PrestamoDTO, PrestamoDomain, PrestamoDaoImpl, PrestamoResult>
 		implements IPrestamoService {
 	@Autowired
-	private IPrestamoDao usuarioDao;
+	private IUsuarioDao usuarioDao;
 	
 	@Autowired
 	private IPrestamoDao prestamoDao;
+	
+	@Autowired
+	private IEstadoGeneralDao estadoGeneralDao;
 
 	@Override
 	@Transactional
@@ -37,7 +42,7 @@ public class PrestamoServiceImpl extends BaseServiceImpl<PrestamoDTO, PrestamoDo
 	@Override
 	@Transactional
 	public PrestamoDTO getById(Integer id) throws BibliotecaException {
-		final PrestamoDomain domain = usuarioDao.getById(id);
+		final PrestamoDomain domain = prestamoDao.getById(id);
 		final PrestamoDTO dto = convertDomainToDto(domain);
 		return dto;
 	}
@@ -64,7 +69,7 @@ public class PrestamoServiceImpl extends BaseServiceImpl<PrestamoDTO, PrestamoDo
 			prestamos.add(dto);
 		}
 		final PrestamoResult prestamoResult = new PrestamoResult();
-		PrestamoResult.setPrestamos(prestamos);
+		prestamoResult.setPrestamos(prestamos);
 		return prestamoResult;
 	}
 
@@ -72,9 +77,9 @@ public class PrestamoServiceImpl extends BaseServiceImpl<PrestamoDTO, PrestamoDo
 	protected PrestamoDTO convertDomainToDto(PrestamoDomain domain) {
 		final PrestamoDTO dto = new PrestamoDTO();
 		dto.setId(domain.getId());
-		dto.setFecha_prestamo(domain.getFecha_prestamo());
-		dto.setFecha_limite(domain.getFecha_limite());
-		dto.setEstado_generalId(((PrestamoDomain) domain.getEstado_general).getId());
+		dto.setFechaPrestamo(domain.getFecha_prestamo());
+		dto.setFechaLimite(domain.getFecha_limite());
+		dto.setEstadoGeneralId(domain.getEstadoGeneral().getId());
 		dto.setUsuarioId(domain.getUsuario().getId());
 		return dto;
 	}
@@ -83,11 +88,9 @@ public class PrestamoServiceImpl extends BaseServiceImpl<PrestamoDTO, PrestamoDo
 	protected PrestamoDomain convertDtoToDomain(PrestamoDTO dto) {
 		final PrestamoDomain domain = new PrestamoDomain();
 		domain.setId(dto.getId());
-		domain.setFecha_prestamo(dto.getFecha_prestamo());
-		domain.setFecha_limite(dto.getFecha_limite());
-		domain.setEstado_generalId(dto.getEstado_generalId());
-	
-		
+		domain.setFecha_prestamo(dto.getFechaPrestamo());
+		domain.setFecha_limite(dto.getFechaLimite());
+		domain.setEstadoGeneral(estadoGeneralDao.getById(dto.getEstadoGeneralId()));
 		return domain;
 	}
 

@@ -1,4 +1,4 @@
-package com.sd.uni.biblioteca.domain.estado;
+package com.sd.uni.biblioteca.domain.estado_general;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,17 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
-import com.sd.uni.biblioteca.domain.libro.LibroDomain;
-import com.sd.uni.biblioteca.domain.prestamo_detalle.PrestamoDetalleDomain;
+import com.sd.uni.biblioteca.domain.prestamo.PrestamoDomain;
 
 @Entity
-@Table(name = "estado")
-public class EstadoDomain extends BaseDomain {
+@Table(name = "estado_general")
+public class EstadoGeneralDomain extends BaseDomain{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
@@ -27,8 +25,8 @@ public class EstadoDomain extends BaseDomain {
 	@Column(name = "descripcion", nullable = false, unique = true)
 	private String _descripcion;
 
-	@OneToMany(mappedBy = "_estado")
-	private Set<PrestamoDetalleDomain> _prestamo_detalle = new HashSet<>();
+	@OneToMany(mappedBy = "_estado_general")
+	private Set<PrestamoDomain> _prestamo = new HashSet<>();
 	
 	
 	public Integer getId() {
@@ -46,5 +44,5 @@ public class EstadoDomain extends BaseDomain {
 	public void setDescripcion(String descripcion) {
 		_descripcion = descripcion;
 	}
-	
+
 }

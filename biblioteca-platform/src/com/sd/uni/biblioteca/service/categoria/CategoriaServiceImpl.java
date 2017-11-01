@@ -12,7 +12,7 @@ import com.sd.uni.biblioteca.dao.categoria.CategoriaDaoImpl;
 import com.sd.uni.biblioteca.domain.categoria.CategoriaDomain;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaDTO;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaResult;
-import com.sd.uni.biblioteca.dto.estado_general.Estado_generalDTO;
+import com.sd.uni.biblioteca.dto.estado_general.EstadoGeneralDTO;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 
@@ -78,18 +78,6 @@ public class CategoriaServiceImpl extends BaseServiceImpl<CategoriaDTO, Categori
 		domain.setId(dto.getId());
 		domain.setDescripcion(dto.getDescripcion());
 		return domain;
-	}
-
-	@Override
-	public CategoriaDTO save(Estado_generalDTO estado_general) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CategoriaDTO getById(Object categoriaId1) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

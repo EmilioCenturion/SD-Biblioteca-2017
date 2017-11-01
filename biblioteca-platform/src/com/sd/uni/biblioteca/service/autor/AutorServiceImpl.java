@@ -20,13 +20,12 @@ import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 public class AutorServiceImpl extends BaseServiceImpl<AutorDTO, AutorDomain, AutorDaoImpl, AutorResult>
 		implements IAutorService {
 	@Autowired
-	private IAutorDao rolDao;
+	private IAutorDao autorDao;
 
 	@Override
 	@Transactional
 	public AutorDTO save(AutorDTO dto) {
 		final AutorDomain domain = convertDtoToDomain(dto);
-		IBaseDao<AutorDomain> autorDao;
 		final AutorDomain autorDomain = autorDao.save(domain);
 		return convertDomainToDto(autorDomain);
 	}
@@ -55,14 +54,13 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorDTO, AutorDomain, Aut
 	@Override
 	@Transactional
 	public AutorResult find(String textToFind) {
-		final List<AutorDTO> autors = new ArrayList<>();
-		IAutorDao autorDao;
+		final List<AutorDTO> autores = new ArrayList<>();
 		for (AutorDomain domain : autorDao.find(textToFind)) {
 			final AutorDTO dto = convertDomainToDto(domain);
-			autors.add(dto);
+			autores.add(dto);
 		}
 		final AutorResult autorResult = new AutorResult();
-		autorResult.setAutors(autors);
+		autorResult.setAutors(autores);
 		return autorResult;
 	}
 
@@ -70,7 +68,7 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorDTO, AutorDomain, Aut
 	protected AutorDTO convertDomainToDto(AutorDomain domain) {
 		final AutorDTO dto = new AutorDTO();
 		dto.setId(domain.getId());
-		dto.setName(domain.getName());
+		dto.setNombre(domain.getNombre());
 		return dto;
 	}
 
@@ -78,7 +76,7 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorDTO, AutorDomain, Aut
 	protected AutorDomain convertDtoToDomain(AutorDTO dto) {
 		final AutorDomain domain = new AutorDomain();
 		domain.setId(dto.getId());
-		domain.setName(dto.getName());
+		domain.setNombre(dto.getNombre());
 		return domain;
 	}
 

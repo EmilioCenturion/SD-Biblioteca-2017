@@ -26,7 +26,7 @@ public class CategoriaResource {
 
 	public CategoriaDTO getById(@PathParam("id") Integer categoriaId) throws BibliotecaException {
 		Object categoriaId1 = null;
-		return categoriaService.getById(categoriaId1);
+		return categoriaService.getById(categoriaId);
 
 	}
 

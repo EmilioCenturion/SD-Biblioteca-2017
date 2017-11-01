@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
+import com.sd.uni.biblioteca.dao.libro.ILibroDao;
 import com.sd.uni.biblioteca.dao.salida.ISalidaDao;
 import com.sd.uni.biblioteca.dao.salidaDetalle.ISalidaDetalleDao;
 import com.sd.uni.biblioteca.dao.salidaDetalle.SalidaDetalleDaoImpl;

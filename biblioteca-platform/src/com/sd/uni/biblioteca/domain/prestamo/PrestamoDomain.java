@@ -14,8 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
-import com.sd.uni.biblioteca.domain.estado_general.Estado_generalDomain;
-import com.sd.uni.biblioteca.domain.prestamo_detalle.Prestamo_detalleDomain;
+import com.sd.uni.biblioteca.domain.estado_general.EstadoGeneralDomain;
+import com.sd.uni.biblioteca.domain.motivo_salida.MotivoSalidaDomain;
+import com.sd.uni.biblioteca.domain.prestamo_detalle.PrestamoDetalleDomain;
 import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
 
 @Entity
@@ -33,13 +34,13 @@ public class PrestamoDomain extends BaseDomain{
 	private Date _fecha_limite;
 	
 	@ManyToOne
-	private Estado_generalDomain _estado_general;
+	private EstadoGeneralDomain _estado_general;
 	
 	@ManyToOne
-	private UsuarioDomain _ususario;
+	private UsuarioDomain _usuario;
 	
 	@OneToMany(mappedBy = "_prestamo")
-	private Set<Prestamo_detalleDomain> _prestamo_detalle = new HashSet<>();
+	private Set<PrestamoDetalleDomain> _prestamo_detalle = new HashSet<>();
 	
 	
 	public Integer getId() {
@@ -66,4 +67,19 @@ public class PrestamoDomain extends BaseDomain{
 		_fecha_limite = fecha_limite;
 	}
 	
+	public void setEstadoGeneral(EstadoGeneralDomain estadoGeneral) {
+		_estado_general = estadoGeneral;
+	}
+	
+	public EstadoGeneralDomain getEstadoGeneral() {
+		return _estado_general;
+	}
+	
+	public void setUsuario(UsuarioDomain usuario) {
+		_usuario = usuario;
+	}
+	
+	public UsuarioDomain getUsuario() {
+		return _usuario;
+	}
 }

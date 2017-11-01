@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sd.uni.biblioteca.dao.rol.IRolDao;
 import com.sd.uni.biblioteca.dao.estado.IEstadoDao;
 import com.sd.uni.biblioteca.dao.estado.EstadoDaoImpl;
+import com.sd.uni.biblioteca.domain.entrada.EntradaDomain;
 import com.sd.uni.biblioteca.domain.estado.EstadoDomain;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaDTO;
+import com.sd.uni.biblioteca.dto.entrada.EntradaDTO;
+import com.sd.uni.biblioteca.dto.entrada.EntradaResult;
 import com.sd.uni.biblioteca.dto.estado.EstadoDTO;
 import com.sd.uni.biblioteca.dto.estado.EstadoResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
@@ -20,8 +23,6 @@ import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 @Service
 public class EstadoServiceImpl extends BaseServiceImpl<EstadoDTO, EstadoDomain, EstadoDaoImpl, EstadoResult>
 		implements IEstadoService {
-	@Autowired
-	private IEstadoDao usuarioDao;
 	
 	@Autowired
 	private IEstadoDao estadoDao;
@@ -30,8 +31,7 @@ public class EstadoServiceImpl extends BaseServiceImpl<EstadoDTO, EstadoDomain, 
 	@Transactional
 	public EstadoDTO save(EstadoDTO dto) {
 		final EstadoDomain domain = convertDtoToDomain(dto);
-		final EstadoDomain usuarioDomain = estadoDao.save(domain);
-		EstadoDomain estadoDomain;
+		final EstadoDomain estadoDomain = estadoDao.save(domain);
 		return convertDomainToDto(estadoDomain);
 	}
 
@@ -70,6 +70,19 @@ public class EstadoServiceImpl extends BaseServiceImpl<EstadoDTO, EstadoDomain, 
 		domain.setId(dto.getId());
 		domain.setDescripcion(dto.getDescripcion());
 		return domain;
+	}
+
+	@Override
+	@Transactional
+	public EstadoResult find(String textToFind) {
+		final List<EstadoDTO> estados = new ArrayList<>();
+		for (EstadoDomain domain : estadoDao.find(textToFind)) {
+			final EstadoDTO dto = convertDomainToDto(domain);
+			estados.add(dto);
+		}
+		final EstadoResult estadoResult = new EstadoResult();
+		estadoResult.setEstados(estados);
+		return estadoResult;
 	}
 
 }

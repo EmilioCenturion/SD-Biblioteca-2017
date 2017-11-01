@@ -24,8 +24,7 @@ public class LibroResource {
 	@Path("/{id}")
 	@Produces("application/json")
 
-	public LibroDTO getById(@PathParam("id") Integer usuarioId) throws BibliotecaException {
-		Object libroId = null;
+	public LibroDTO getById(@PathParam("id") Integer libroId) throws BibliotecaException {
 		return libroService.getById(libroId);
 
 	}

@@ -1,28 +1,12 @@
 package com.sd.uni.biblioteca.service.libro;
 
+import com.sd.uni.biblioteca.dao.libro.LibroDaoImpl;
+import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 import com.sd.uni.biblioteca.dto.libro.LibroDTO;
 import com.sd.uni.biblioteca.dto.libro.LibroResult;
+import com.sd.uni.biblioteca.service.base.IBaseService;
 
-public class ILibroService {
+public interface ILibroService extends IBaseService<LibroDTO, LibroDomain, LibroDaoImpl, LibroResult> {
 
-	public LibroDTO getById(Object libroId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public LibroResult find(String textToFind) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public LibroResult getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public LibroDTO save(LibroDTO libro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public LibroResult find(String textToFind);
 }

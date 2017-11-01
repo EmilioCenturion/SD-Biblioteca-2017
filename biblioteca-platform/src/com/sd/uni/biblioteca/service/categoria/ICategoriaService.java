@@ -9,6 +9,4 @@ import com.sd.uni.biblioteca.service.base.IBaseService;
 public interface ICategoriaService extends IBaseService<CategoriaDTO, CategoriaDomain, CategoriaDaoImpl, CategoriaResult> {
 
 	public CategoriaResult find(String textToFind);
-
-	public CategoriaDTO getById(Object categoriaId1);
 }

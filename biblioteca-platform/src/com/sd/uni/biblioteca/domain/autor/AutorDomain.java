@@ -8,18 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 @Entity
 @Table(name = "autor")
-public class AutorDomain {
+public class AutorDomain extends BaseDomain {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer _id;
 	
-	@Column(name = "name", nullable = false, unique = true)
-	private String _name;
+	@Column(name = "nombre", nullable = false, unique = true)
+	private String _nombre;
 
 	public Integer getId() {
 		return _id;
@@ -29,12 +30,12 @@ public class AutorDomain {
 		_id = id;
 	}
 
-	public String getName() {
-		return _name;
+	public String getNombre() {
+		return _nombre;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setNombre(String nombre) {
+		_nombre = nombre;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.sd.uni.biblioteca.dao.autor;
+package com.sd.uni.biblioteca.dao.estado_general;
 
 import java.util.List;
 
@@ -14,61 +14,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sd.uni.biblioteca.dao.base.BaseDaoImpl;
-import com.sd.uni.biblioteca.domain.autor.AutorDomain;
-import com.sd.uni.biblioteca.domain.autor.AutorDomain;
+import com.sd.uni.biblioteca.domain.estado_general.EstadoGeneralDomain;
 
 @Repository
-public class AutorDaoImpl extends BaseDaoImpl<AutorDomain> implements IAutorDao {
+public class EstadoGeneralDaoImpl extends BaseDaoImpl<EstadoGeneralDomain> implements IEstadoGeneralDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public AutorDomain save(AutorDomain domain) {
+	public EstadoGeneralDomain save(EstadoGeneralDomain domain) {
 		sessionFactory.getCurrentSession().saveOrUpdate(domain);
 		return domain;
 	}
 
 	@Override
-	public AutorDomain getById(Integer domainId) {
-		return (AutorDomain) sessionFactory.getCurrentSession().get(AutorDomain.class, domainId);
+	public EstadoGeneralDomain getById(Integer domainId) {
+		return (EstadoGeneralDomain) sessionFactory.getCurrentSession().get(EstadoGeneralDomain.class, domainId);
 	}
 
 	@Override
-	public List<AutorDomain> findAll() {
-		final Criteria criteria = sessionFactory.getCurrentSession().createCriteria(AutorDomain.class);
+	public List<EstadoGeneralDomain> findAll() {
+		final Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EstadoGeneralDomain.class);
 		return criteria.list();
 	}
 
 	
-	public List<AutorDomain> find(String textToFind) {
+	public List<EstadoGeneralDomain> find(String textToFind) {
 
 		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(AutorDomain.class);
-		Criterion nombreCriterion =Restrictions.ilike("_nombre", textToFind);
+		Criteria criteria = session.createCriteria(EstadoGeneralDomain.class);
+		Criterion nameCriterion =Restrictions.ilike("_name", textToFind);
 		Criterion idCriterion = null;
 		if (StringUtils.isNumeric(textToFind)) {
 			idCriterion=Restrictions.eq("_id", Integer.valueOf(textToFind));
 		}
 		
 		if(idCriterion!=null){
-			criteria.add(Restrictions.or(nombreCriterion, idCriterion));
+			criteria.add(Restrictions.or(nameCriterion, idCriterion));
 		}else{
-			criteria.add(nombreCriterion);
+			criteria.add(nameCriterion);
 		}
 		criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-		List<AutorDomain> autores = criteria.list();
-		return autores;
+		List<EstadoGeneralDomain> estados_general = criteria.list();
+		return estados_general;
 	}
 
-/*	public List<AutorDomain> find2(String textToFind) {
+	public List<EstadoGeneralDomain> find2(String textToFind) {
 		Integer id = null;
 		if (StringUtils.isNumeric(textToFind)) {
 			id = Integer.valueOf(textToFind);
 		}
-		Query q = sessionFactory.getCurrentSession().createQuery("from AutorDomain where _name like :parameter or _id=:id");
+		Query q = sessionFactory.getCurrentSession().createQuery("from Estado_generalDomain where _name like :parameter or _id=:id");
 		q.setParameter("parameter", "%" + textToFind + "%");
 		q.setParameter("id", id);
 		return q.list();
-	}*/
+	}
 
 }
+

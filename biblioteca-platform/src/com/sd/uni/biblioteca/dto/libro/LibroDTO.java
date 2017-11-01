@@ -10,7 +10,7 @@ public class LibroDTO extends BaseDTO {
 
 	private static final long serialVersionUID = 1L;
 	private String _nombre;
-	private String _autor;
+	private Integer _autorId;
 	private Integer _anho;
 	
 
@@ -24,12 +24,12 @@ public class LibroDTO extends BaseDTO {
 	}
 	
 	@XmlElement
-	public String getAutor() {
-		return _autor;
+	public Integer getAutorId() {
+		return _autorId;
 	}
 
-	public void setAutor(String autor) {
-		_autor = autor;
+	public void setAutorId(Integer autorId) {
+		_autorId = autorId;
 	}
 	
 	@XmlElement

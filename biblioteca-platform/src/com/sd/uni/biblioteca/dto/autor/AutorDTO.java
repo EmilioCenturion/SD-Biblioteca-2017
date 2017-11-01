@@ -9,15 +9,16 @@ import com.sd.uni.biblioteca.dto.base.BaseDTO;
 public class AutorDTO extends BaseDTO {
 
 	private static final long serialVersionUID = 1L;
-	private String _descripcion;
+	private String _nombre;
 
 	@XmlElement
-	public String getDescripcion() {
-		return _descripcion;
+	public String getNombre() {
+		return _nombre;
 	}
 
-	public void setDescripcion(String descripcion) {
-		_descripcion = descripcion;
+	public void setNombre(String nombre) {
+		_nombre = nombre;
 	}
+
 
 }

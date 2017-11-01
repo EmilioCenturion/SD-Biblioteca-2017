@@ -11,46 +11,46 @@ import com.sd.uni.biblioteca.dto.base.BaseDTO;
 public class PrestamoDTO extends BaseDTO {
 
 	private static final long serialVersionUID = 1L;
-	private String _estado_generalId;
-	private Date _fecha_prestamo;
-	private Date _fecha_limite;
-	private String _usuarioId;
+	private Integer _estadoGeneralId;
+	private Date _fechaPrestamo;
+	private Date _fechaLimite;
+	private Integer _usuarioId;
 
 	@XmlElement
-	public String getEstado_generalId() {
-		return _estado_generalId;
+	public Integer getEstadoGeneralId() {
+		return _estadoGeneralId;
 	}
 	
 	@XmlElement
-	public Date getFecha_prestamo() {
-		return _fecha_prestamo;
+	public Date getFechaPrestamo() {
+		return _fechaPrestamo;
 	}
 	
 	@XmlElement
-	public Date getFecha_limite() {
-		return _fecha_limite;
+	public Date getFechaLimite() {
+		return _fechaLimite;
 	}
 	
 	@XmlElement
-	public String getUsuarioId() {
+	public Integer getUsuarioId() {
 		return _usuarioId;
 	}
 	
 
-	public void setEstado_generalId(String estado_generalId) {
-		_estado_generalId = estado_generalId;
+	public void setEstadoGeneralId(Integer estadoGeneralId) {
+		_estadoGeneralId = estadoGeneralId;
 	}
 	
-	public void setFecha_prestamo(Date fecha_prestamo) {
-		_fecha_prestamo = fecha_prestamo;
+	public void setFechaPrestamo(Date fechaPrestamo) {
+		_fechaPrestamo = fechaPrestamo;
 	}
 
-	public void setUsuarioId(String usuarioId) {
+	public void setUsuarioId(Integer usuarioId) {
 		_usuarioId = usuarioId;
 	}
 
-	public Date setFecha_limite(Date fecha_limite) {
-		return _fecha_limite;
+	public Date setFechaLimite(Date fechaLimite) {
+		return _fechaLimite;
 		
 	}
 

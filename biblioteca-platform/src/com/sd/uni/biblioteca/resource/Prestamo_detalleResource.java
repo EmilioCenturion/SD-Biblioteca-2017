@@ -8,41 +8,42 @@ import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.sd.uni.biblioteca.dto.prestamo_detalle.Prestamo_detalleDTO;
-import com.sd.uni.biblioteca.dto.prestamo_detalle.Prestamo_detalleResult;
+
+import com.sd.uni.biblioteca.dto.prestamo_detalle.PrestamoDetalleDTO;
+import com.sd.uni.biblioteca.dto.prestamo_detalle.PrestamoDetalleResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
-import com.sd.uni.biblioteca.service.prestamo_detalle.IPrestamo_detalleService;
+import com.sd.uni.biblioteca.service.prestamo_detalle.IPrestamoDetalleService;
 
 @Path("/prestamo")
 @Component
 public class Prestamo_detalleResource {
 	@Autowired
-	private IPrestamo_detalleService prestamo_detalleService;
+	private IPrestamoDetalleService prestamo_detalleService;
 
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
 
-	public Prestamo_detalleDTO getById(@PathParam("id") Integer prestamo_detalleId) throws BibliotecaException {
+	public PrestamoDetalleDTO getById(@PathParam("id") Integer prestamo_detalleId) throws BibliotecaException {
 		return prestamo_detalleService.getById(prestamo_detalleId);
 
 	}
 
 	@GET
 	@Produces("application/xml")
-	public Prestamo_detalleResult getAll() {
+	public PrestamoDetalleResult getAll() {
 		return prestamo_detalleService.getAll();
 	}
 
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
-	public Prestamo_detalleResult search(@PathParam("textToFind") String textToFind) {
+	public PrestamoDetalleResult search(@PathParam("textToFind") String textToFind) {
 		return prestamo_detalleService.find(textToFind);
 	}
 
 	@POST
-	public Prestamo_detalleDTO save(Prestamo_detalleDTO prestamo_detalle) {
+	public PrestamoDetalleDTO save(PrestamoDetalleDTO prestamo_detalle) {
 		
 		return prestamo_detalleService.save(prestamo_detalle);
 	}

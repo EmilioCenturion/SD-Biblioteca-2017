@@ -13,19 +13,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sd.uni.biblioteca.domain.autor.AutorDomain;
-import com.sd.uni.biblioteca.domain.prestamo_detalle.Prestamo_detalleDomain;
+import com.sd.uni.biblioteca.domain.base.BaseDomain;
+import com.sd.uni.biblioteca.domain.motivo_salida.MotivoSalidaDomain;
+import com.sd.uni.biblioteca.domain.prestamo_detalle.PrestamoDetalleDomain;
 
 
 @Entity
 @Table(name = "libro")
-public class LibroDomain {
+public class LibroDomain extends BaseDomain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer _id;
 	
-	@Column(name = "name", nullable = false, unique = true)
-	private String _name;
+	@Column(name = "nombre", nullable = false, unique = true)
+	private String _nombre;
 	
 	@Column(name = "anho", nullable = false, unique = true)
 	private Integer _anho;
@@ -34,7 +36,7 @@ public class LibroDomain {
 	private AutorDomain _autor;
 	
 	@OneToMany(mappedBy = "_libro")
-	private Set<Prestamo_detalleDomain> _prestamo_detalle = new HashSet<>();
+	private Set<PrestamoDetalleDomain> _prestamo_detalle = new HashSet<>();
 	
 	public Integer getId() {
 		return _id;
@@ -44,12 +46,12 @@ public class LibroDomain {
 		_id = id;
 	}
 
-	public String getName() {
-		return _name;
+	public String getNombre() {
+		return _nombre;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setNombre(String nombre) {
+		_nombre = nombre;
 	}
 	
 	public Integer getAnho() {
@@ -58,6 +60,14 @@ public class LibroDomain {
 
 	public void setAnho(Integer anho) {
 		_anho = anho;
+	}
+	
+	public AutorDomain getAutor() {
+		return _autor;
+	}
+
+	public void setAutor(AutorDomain autor) {
+		_autor = autor;
 	}
 }
 

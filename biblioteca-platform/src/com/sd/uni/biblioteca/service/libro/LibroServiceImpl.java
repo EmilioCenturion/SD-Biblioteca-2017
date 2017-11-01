@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sd.uni.biblioteca.dao.autor.IAutorDao;
 import com.sd.uni.biblioteca.dao.libro.ILibroDao;
 import com.sd.uni.biblioteca.dao.libro.LibroDaoImpl;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
@@ -20,6 +21,9 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 		implements ILibroService {
 	@Autowired
 	private ILibroDao libroDao;
+	
+	@Autowired
+	private IAutorDao autorDao;
 
 	@Override
 	@Transactional
@@ -67,9 +71,9 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	protected LibroDTO convertDomainToDto(LibroDomain domain) {
 		final LibroDTO dto = new LibroDTO();
 		dto.setId(domain.getId());
-		domain.setName(dto.getNombre());
-		domain.setAnho(dto.getAnho());
-		domain.setAutor(dto.getAutor());
+		dto.setNombre(dto.getNombre());
+		dto.setAnho(dto.getAnho());
+		dto.setAutorId(domain.getAutor().getId());
 		return dto;
 	}
 
@@ -77,9 +81,9 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	protected LibroDomain convertDtoToDomain(LibroDTO dto) {
 		final LibroDomain domain = new LibroDomain();
 		domain.setId(dto.getId());
-		domain.setName(dto.getNombre());
+		domain.setNombre(dto.getNombre());
 		domain.setAnho(dto.getAnho());
-		domain.setAutor(dto.getAutor());
+		domain.setAutor(autorDao.getById(dto.getAutorId()));
 		return domain;
 	}
 
