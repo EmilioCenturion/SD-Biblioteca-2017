@@ -10,3 +10,5 @@ public interface IPrestamoDetalleDao extends IBaseDao<PrestamoDetalleDomain> {
 	public List<PrestamoDetalleDomain>find(String textToFind);
 
 }
+
+

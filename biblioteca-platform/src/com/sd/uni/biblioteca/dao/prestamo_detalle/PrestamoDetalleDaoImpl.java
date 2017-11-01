@@ -63,7 +63,7 @@ public class PrestamoDetalleDaoImpl extends BaseDaoImpl<PrestamoDetalleDomain> i
 		if (StringUtils.isNumeric(textToFind)) {
 			id = Integer.valueOf(textToFind);
 		}
-		Query q = sessionFactory.getCurrentSession().createQuery("from Prestamo_detalleDomain where _name like :parameter or _id=:id");
+		Query q = sessionFactory.getCurrentSession().createQuery("from PrestamoDetalleDomain where _name like :parameter or _id=:id");
 		q.setParameter("parameter", "%" + textToFind + "%");
 		q.setParameter("id", id);
 		return q.list();
