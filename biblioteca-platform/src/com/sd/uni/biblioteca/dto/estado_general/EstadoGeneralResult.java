@@ -13,11 +13,15 @@ public class EstadoGeneralResult extends BaseResult<EstadoGeneralDTO> {
 	private static final long serialVersionUID = 1L;
 
 	@XmlElement
-	public List<EstadoGeneralDTO> getEstadoGenerals() {
+	public List<EstadoGeneralDTO> getEstadoGenerales() {
 		return getList();
 	}
 
-	public void setEstadosGenerales(List<EstadoGeneralDTO> dtos) {
+	public void setEstadoGenerales(List<EstadoGeneralDTO> dtos) {
 		super.setList(dtos);
 	}
+
+	
+
+	
 }

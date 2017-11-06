@@ -11,23 +11,23 @@ import com.sd.uni.biblioteca.dto.base.BaseDTO;
 public class PrestamoDetalleDTO extends BaseDTO {
 
 	private static final long serialVersionUID = 1L;
-	private String _prestamoId;
-	private String _libroId;
-	private String _estadoId;
+	private Integer _prestamoId;
+	private Integer _libroId;
+	private Integer _estadoId;
 	private Date _fecha_devolucion;
 
 	@XmlElement
-	public String getPrestamoId() {
+	public Integer getPrestamoId() {
 		return _prestamoId;
 	}
 	
 	@XmlElement
-	public String getLibroId() {
+	public Integer getLibroId() {
 		return _libroId;
 	}
 	
 	@XmlElement
-	public String getEstadoId() {
+	public Integer getEstadoId() {
 		return _estadoId;
 	}
 	
@@ -37,15 +37,15 @@ public class PrestamoDetalleDTO extends BaseDTO {
 	}
 	
 
-	public void setPrestamoId(String prestamoId) {
+	public void setPrestamoId(Integer prestamoId) {
 		_prestamoId = prestamoId;
 	}
 	
-	public void setLibroId(String libroId) {
+	public void setLibroId(Integer libroId) {
 		_libroId = libroId;
 	}
 
-	public void setEstadoId(String estadoId) {
+	public void setEstadoId(Integer estadoId) {
 		_estadoId = estadoId;
 	}
 	

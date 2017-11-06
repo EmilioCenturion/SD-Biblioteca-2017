@@ -45,10 +45,10 @@ public class SalidaDomain extends BaseDomain {
 	@Column(name = "fecha", nullable = false, unique = true)
 	private Date _fecha;
 
-	@Column(name = "descripcion", nullable = false, unique = true)
+	@Column(name = "descripcion", nullable = false, unique = false)
 	private String _descripcion;
 	
-	@OneToMany(mappedBy = "_salida_detalle")
+	@OneToMany(mappedBy = "_salida")
 	private Set<SalidaDetalleDomain> _salida_detalles = new HashSet<>();
 	
 	@ManyToOne

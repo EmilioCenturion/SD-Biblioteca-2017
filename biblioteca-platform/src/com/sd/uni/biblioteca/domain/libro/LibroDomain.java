@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import com.sd.uni.biblioteca.domain.autor.AutorDomain;
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
+import com.sd.uni.biblioteca.domain.categoria.CategoriaDomain;
 import com.sd.uni.biblioteca.domain.motivo_salida.MotivoSalidaDomain;
 import com.sd.uni.biblioteca.domain.prestamo_detalle.PrestamoDetalleDomain;
 
@@ -35,8 +36,11 @@ public class LibroDomain extends BaseDomain {
 	@ManyToOne
 	private AutorDomain _autor;
 	
+	@ManyToOne
+	private CategoriaDomain _categoria;
+	
 	@OneToMany(mappedBy = "_libro")
-	private Set<PrestamoDetalleDomain> _prestamo_detalle = new HashSet<>();
+	private Set<PrestamoDetalleDomain> _prestamoDetalles = new HashSet<>();
 	
 	public Integer getId() {
 		return _id;
@@ -68,6 +72,22 @@ public class LibroDomain extends BaseDomain {
 
 	public void setAutor(AutorDomain autor) {
 		_autor = autor;
+	}
+	
+	public CategoriaDomain getCategoria() {
+		return _categoria;
+	}
+
+	public void setCategoria(CategoriaDomain categoria) {
+		_categoria = categoria;
+	}
+	
+	public Set<PrestamoDetalleDomain> getPrestamoDetalles() {
+		return _prestamoDetalles;
+	}
+
+	public void setPrestamoDetalles(Set<PrestamoDetalleDomain> prestamoDetalles) {
+		this._prestamoDetalles = prestamoDetalles;
 	}
 }
 

@@ -59,8 +59,8 @@ public class PrestamoDetalleServiceImpl extends BaseServiceImpl<PrestamoDetalleD
 		final PrestamoDetalleDTO dto = new PrestamoDetalleDTO();
 		dto.setId(domain.getId());
 		dto.setPrestamoId(domain.getPrestamo().getId());
-		dto.setLibro(domain.getLibro().getId());
-		dto.setEstado(domain.getEstado());
+		dto.setLibroId(domain.getLibro().getId());
+		dto.setEstadoId(domain.getEstado().getId());
 		dto.setFecha_devolucion(domain.getFecha_devolucion());
 		return dto;
 	}
@@ -69,12 +69,18 @@ public class PrestamoDetalleServiceImpl extends BaseServiceImpl<PrestamoDetalleD
 	protected PrestamoDetalleDomain convertDtoToDomain(PrestamoDetalleDTO dto) {
 		final PrestamoDetalleDomain domain = new PrestamoDetalleDomain();
 		domain.setId(domain.getId());
-		domain.setPrestamo(domain.getPrestamo().getId());
-		domain.setLibro(domain.getLibro().getId());
+		domain.setPrestamo(domain.getPrestamo());
+		domain.setLibro(domain.getLibro());
 		domain.setEstado(domain.getEstado());
 		domain.setFecha_devolucion(domain.getFecha_devolucion());
 		
 		return domain;
+	}
+
+	@Override
+	public PrestamoDetalleResult find(String textToFind) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

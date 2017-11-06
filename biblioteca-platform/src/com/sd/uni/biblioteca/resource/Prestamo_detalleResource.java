@@ -14,7 +14,7 @@ import com.sd.uni.biblioteca.dto.prestamo_detalle.PrestamoDetalleResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.prestamo_detalle.IPrestamoDetalleService;
 
-@Path("/prestamo")
+@Path("/prestamoDetalle")
 @Component
 public class Prestamo_detalleResource {
 	@Autowired

@@ -20,10 +20,10 @@ public class UsuarioManager extends AbstractBaseManager {
 		rolDTO1.setNombre("Administrado");
 		
 		RolDTO rolDTO2 = new RolDTO();
-		rolDTO2.setNombre("Secretari");
+		rolDTO2.setNombre("Secretaria");
 		
 		RolDTO rolDTO3 = new RolDTO();
-		rolDTO3.setNombre("Docto");
+		rolDTO3.setNombre("Doctor");
 		
 		getJerseyClient().resource(getBaseUrl() + "/rol").entity(rolDTO1).post(RolDTO.class);
 		getJerseyClient().resource(getBaseUrl() + "/rol").entity(rolDTO2).post(RolDTO.class);

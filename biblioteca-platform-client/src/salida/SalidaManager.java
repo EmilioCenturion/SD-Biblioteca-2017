@@ -36,7 +36,7 @@ public class SalidaManager extends AbstractBaseManager {
 		SalidaDTO salidaDTO = new SalidaDTO();
 		salidaDTO.setDescripcion("Probablemente haya sido robado");
 		salidaDTO.setFecha(fecha);
-		salidaDTO.setMotivosalidaId(motivoSalidaId);
+		salidaDTO.setMotivoSalidaId(motivoSalidaId);
 		
 		getJerseyClient().resource(getBaseUrl() + "/salida").entity(salidaDTO).post(SalidaDTO.class);
 	}
@@ -55,7 +55,7 @@ public class SalidaManager extends AbstractBaseManager {
 	public void getByIdSalida(int id){
 		SalidaDTO salidaResult = getJerseyClient().resource(getBaseUrl() + "/salida/"+id).get(SalidaDTO.class);
 		System.out.println("Fecha: "+ salidaResult.getFecha());
-		System.out.println("Motivo Salida: "+ SalidaResult.getMotivoSalidaId());
+		System.out.println("Motivo Salida: "+ salidaResult.getMotivoSalidaId());
 		System.out.println("Descripcion: "+ salidaResult.getDescripcion());
 		
 	}

@@ -26,8 +26,8 @@ public class CategoriaDomain extends BaseDomain {
 	@Column(name = "descripcion", nullable = false, unique = true)
 	private String _descripcion;
 	
-	@OneToMany(mappedBy = "_rol")
-	private Set<LibroDomain> _libro = new HashSet<>();
+	@OneToMany(mappedBy = "_categoria")
+	private Set<LibroDomain> _libros = new HashSet<>();
 	
 	public Integer getId() {
 		return _id;
@@ -43,5 +43,13 @@ public class CategoriaDomain extends BaseDomain {
 
 	public void setDescripcion(String descripcion) {
 		_descripcion = descripcion;
+	}
+	
+	public Set<LibroDomain> getLibros() {
+		return _libros;
+	}
+
+	public void setLibros(Set<LibroDomain> libros) {
+		this._libros = libros;
 	}
 }

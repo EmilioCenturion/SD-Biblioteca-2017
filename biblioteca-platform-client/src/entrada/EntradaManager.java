@@ -37,7 +37,7 @@ public class EntradaManager extends AbstractBaseManager {
 	public void addEntrada(String descripcion, Date fecha, Integer motivoEntradaId) {
 		
 		EntradaDTO entradaDTO = new EntradaDTO();
-		entradaDTO.setDescripcion("Donado por el Director");;
+		entradaDTO.setDescripcion("Donado por el Director");
 		entradaDTO.setFecha(fecha);
 		entradaDTO.setMotivoEntradaId(motivoEntradaId);
 		

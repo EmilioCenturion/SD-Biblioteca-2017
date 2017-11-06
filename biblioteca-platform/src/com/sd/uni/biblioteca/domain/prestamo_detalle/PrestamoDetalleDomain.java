@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.estado.EstadoDomain;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
+import com.sd.uni.biblioteca.domain.motivoEntrada.MotivoEntradaDomain;
 import com.sd.uni.biblioteca.domain.prestamo.PrestamoDomain;
 import com.sd.uni.biblioteca.domain.rol.RolDomain;
 import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
@@ -57,4 +58,27 @@ public class PrestamoDetalleDomain extends BaseDomain {
 		_fecha_devolucion = fecha_devolucion;
 	}
 	
+	public LibroDomain getLibro() {
+		return _libro;
+	}
+
+	public void setLibro(LibroDomain libro) {
+		_libro = libro;
+	}
+	
+	public EstadoDomain getEstado() {
+		return _estado;
+	}
+
+	public void setEstado(EstadoDomain estado) {
+		_estado = estado;
+	}
+	
+	public PrestamoDomain getPrestamo() {
+		return _prestamo;
+	}
+
+	public void setPrestamo(PrestamoDomain prestamo) {
+		_prestamo = prestamo;
+	}
 }

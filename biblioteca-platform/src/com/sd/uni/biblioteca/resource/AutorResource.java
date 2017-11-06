@@ -14,7 +14,7 @@ import com.sd.uni.biblioteca.dto.rol.RolResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.rol.IRolService;
 
-@Path("/rol")
+@Path("/autor")
 @Component
 public class AutorResource {
 	@Autowired

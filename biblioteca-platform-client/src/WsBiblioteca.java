@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import reserva.ReservaManager;
+import salida.SalidaManager;
 import usuario.UsuarioManager;
 import entrada.EntradaManager;
 
@@ -86,7 +87,7 @@ public class WsBiblioteca {
 			
 			try {
 				
-				s.addsalida("Descripcion uno", formatter.parse("20-06-2017") , 1);
+				s.addSalida("Descripcion uno", formatter.parse("20-06-2017") , 1);
 				s.addSalida("Cualquier descripcion 2", formatter.parse("11-08-2017"), 2);
 			
 			} catch (ParseException e) {
