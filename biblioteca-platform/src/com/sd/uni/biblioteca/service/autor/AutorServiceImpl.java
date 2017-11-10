@@ -11,8 +11,11 @@ import com.sd.uni.biblioteca.dao.autor.IAutorDao;
 import com.sd.uni.biblioteca.dao.autor.AutorDaoImpl;
 import com.sd.uni.biblioteca.dao.base.IBaseDao;
 import com.sd.uni.biblioteca.domain.autor.AutorDomain;
+import com.sd.uni.biblioteca.domain.usuario.UsuarioDomain;
 import com.sd.uni.biblioteca.dto.autor.AutorDTO;
 import com.sd.uni.biblioteca.dto.autor.AutorResult;
+import com.sd.uni.biblioteca.dto.usuario.UsuarioDTO;
+import com.sd.uni.biblioteca.dto.usuario.UsuarioResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 
@@ -78,6 +81,19 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorDTO, AutorDomain, Aut
 		domain.setId(dto.getId());
 		domain.setNombre(dto.getNombre());
 		return domain;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public AutorResult find(String textToFind, int page, int maxItems) throws BibliotecaException {
+		final List<AutorDTO> autores = new ArrayList<>();
+		for (AutorDomain domain : autorDao.find(textToFind, page, maxItems)) {
+			final AutorDTO dto = convertDomainToDto(domain);
+			autores.add(dto);
+		}
+		final AutorResult autorResult = new AutorResult();
+		autorResult.setAutors(autores);
+		return autorResult;
 	}
 
 }

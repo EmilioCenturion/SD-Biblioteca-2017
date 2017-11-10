@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sd.uni.biblioteca.dao.categoria.ICategoriaDao;
 import com.sd.uni.biblioteca.dao.categoria.CategoriaDaoImpl;
 import com.sd.uni.biblioteca.domain.categoria.CategoriaDomain;
+import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaDTO;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaResult;
 import com.sd.uni.biblioteca.dto.estado_general.EstadoGeneralDTO;
+import com.sd.uni.biblioteca.dto.libro.LibroDTO;
+import com.sd.uni.biblioteca.dto.libro.LibroResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 
@@ -78,6 +81,19 @@ public class CategoriaServiceImpl extends BaseServiceImpl<CategoriaDTO, Categori
 		domain.setId(dto.getId());
 		domain.setDescripcion(dto.getDescripcion());
 		return domain;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public CategoriaResult find(String textToFind, int page, int maxItems) throws BibliotecaException {
+		final List<CategoriaDTO> categorias = new ArrayList<>();
+		for (CategoriaDomain domain : categoriaDao.find(textToFind, page, maxItems)) {
+			final CategoriaDTO dto = convertDomainToDto(domain);
+			categorias.add(dto);
+		}
+		final CategoriaResult categoriaResult = new CategoriaResult();
+		categoriaResult.setCategorias(categorias);
+		return categoriaResult;
 	}
 
 }

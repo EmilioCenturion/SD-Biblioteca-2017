@@ -46,7 +46,21 @@ public class UsuarioResource {
 
 	@POST
 	public UsuarioDTO save(UsuarioDTO usuario) {
-		
 		return usuarioService.save(usuario);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}/{textToFind}")
+	@Produces("application/xml")
+	public UsuarioResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
+		return usuarioService.find(textToFind, page, maxItems);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}")
+	@Produces("application/xml")
+	public UsuarioResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
+			throws BibliotecaException {
+		return usuarioService.find(null, page, maxItems);
 	}
 }

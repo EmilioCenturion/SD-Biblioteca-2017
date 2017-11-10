@@ -9,40 +9,59 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sd.uni.biblioteca.dto.autor.AutorDTO;
+import com.sd.uni.biblioteca.dto.autor.AutorResult;
 import com.sd.uni.biblioteca.dto.rol.RolDTO;
 import com.sd.uni.biblioteca.dto.rol.RolResult;
+import com.sd.uni.biblioteca.dto.usuario.UsuarioResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
+import com.sd.uni.biblioteca.service.autor.IAutorService;
 import com.sd.uni.biblioteca.service.rol.IRolService;
 
 @Path("/autor")
 @Component
 public class AutorResource {
 	@Autowired
-	private IRolService rolService;
+	private IAutorService autorService;
 
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public RolDTO getById(@PathParam("id") Integer rolId) throws BibliotecaException {
-		return rolService.getById(rolId);
+	public AutorDTO getById(@PathParam("id") Integer autorId) throws BibliotecaException {
+		return autorService.getById(autorId);
 	}
 
 	@GET
 	@Produces("application/xml")
-	public RolResult getAll() {
-		return rolService.getAll();
+	public AutorResult getAll() {
+		return autorService.getAll();
 	}
 
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
-	public RolResult search(@PathParam("textToFind") String textToFind) {
-		return rolService.find(textToFind);
+	public AutorResult search(@PathParam("textToFind") String textToFind) {
+		return autorService.find(textToFind);
 	}
 
 	@POST
-	public RolDTO save(RolDTO country) {
-		return rolService.save(country);
+	public AutorDTO save(AutorDTO autor) {
+		return autorService.save(autor);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}/{textToFind}")
+	@Produces("application/xml")
+	public AutorResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
+		return autorService.find(textToFind, page, maxItems);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}")
+	@Produces("application/xml")
+	public AutorResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
+			throws BibliotecaException {
+		return autorService.find(null, page, maxItems);
 	}
 }
 

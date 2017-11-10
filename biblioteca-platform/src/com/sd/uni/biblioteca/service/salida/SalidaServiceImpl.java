@@ -1,5 +1,6 @@
 package com.sd.uni.biblioteca.service.salida;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,19 @@ public class SalidaServiceImpl extends BaseServiceImpl<SalidaDTO, SalidaDomain, 
 	public SalidaResult find(String textToFind) {
 		final List<SalidaDTO> salidas = new ArrayList<>();
 		for (SalidaDomain domain : salidaDao.find(textToFind)) {
+			final SalidaDTO dto = convertDomainToDto(domain);
+			salidas.add(dto);
+		}
+		final SalidaResult salidaResult = new SalidaResult();
+		salidaResult.setSalidas(salidas);
+		return salidaResult;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public SalidaResult find(String textToFind, int page, int maxItems) throws BibliotecaException, ParseException {
+		final List<SalidaDTO> salidas = new ArrayList<>();
+		for (SalidaDomain domain : salidaDao.find(textToFind, page, maxItems)) {
 			final SalidaDTO dto = convertDomainToDto(domain);
 			salidas.add(dto);
 		}

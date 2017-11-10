@@ -1,7 +1,5 @@
 package com.sd.uni.biblioteca.resource;
 
-
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -48,5 +46,21 @@ public class EntradaResource {
 	public EntradaDTO save(EntradaDTO entrada) {
 		
 		return entradaService.save(entrada);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}/{textToFind}")
+	@Produces("application/xml")
+	public EntradaResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page,
+			@PathParam("max") Integer maxItems) throws BibliotecaException {
+		return entradaService.find(textToFind, page, maxItems);
+	}
+
+	@GET
+	@Path("/search/{max}/{page}")
+	@Produces("application/xml")
+	public EntradaResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
+			throws BibliotecaException {
+		return entradaService.find(null, page, maxItems);
 	}
 }

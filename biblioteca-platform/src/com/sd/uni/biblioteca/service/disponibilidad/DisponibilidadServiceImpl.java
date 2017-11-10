@@ -77,7 +77,6 @@ public class DisponibilidadServiceImpl extends BaseServiceImpl<DisponibilidadDTO
 		dto.setId(domain.getId());
 		dto.setCantidad(domain.getCantidad());
 		dto.setLibroId(domain.getLibro().getId());
-		dto.setLibroId(domain.getCategoria().getId());
 		return dto;
 	}
 
@@ -87,7 +86,6 @@ public class DisponibilidadServiceImpl extends BaseServiceImpl<DisponibilidadDTO
 		domain.setId(dto.getId());
 		domain.setCantidad(dto.getCantidad());
 		domain.setLibro(libroDao.getById(dto.getLibroId()));
-		domain.setCategoria(categoriaDao.getById(dto.getCategoriaId()));
 		
 		return domain;
 	}

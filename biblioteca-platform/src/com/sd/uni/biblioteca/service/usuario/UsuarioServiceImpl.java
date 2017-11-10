@@ -66,7 +66,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<UsuarioDTO, UsuarioDomai
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public UsuarioResult find(String textToFind) {
 		final List<UsuarioDTO> usuarios = new ArrayList<>();
 		for (UsuarioDomain domain : usuarioDao.find(textToFind)) {
@@ -97,6 +97,19 @@ public class UsuarioServiceImpl extends BaseServiceImpl<UsuarioDTO, UsuarioDomai
 		domain.setRol(rolDao.getById(dto.getRolId()));
 		
 		return domain;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public UsuarioResult find(String textToFind, int page, int maxItems) throws BibliotecaException {
+		final List<UsuarioDTO> usuarios = new ArrayList<>();
+		for (UsuarioDomain domain : usuarioDao.find(textToFind, page, maxItems)) {
+			final UsuarioDTO dto = convertDomainToDto(domain);
+			usuarios.add(dto);
+		}
+		final UsuarioResult usuarioResult = new UsuarioResult();
+		usuarioResult.setUsuarios(usuarios);
+		return usuarioResult;
 	}
 
 }

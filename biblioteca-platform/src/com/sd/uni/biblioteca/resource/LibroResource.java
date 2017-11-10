@@ -47,4 +47,19 @@ public class LibroResource {
 		
 		return libroService.save(libro);
 	}
+	
+	@GET
+	@Path("/search/{max}/{page}/{textToFind}")
+	@Produces("application/xml")
+	public LibroResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
+		return libroService.find(textToFind, page, maxItems);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}")
+	@Produces("application/xml")
+	public LibroResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
+			throws BibliotecaException {
+		return libroService.find(null, page, maxItems);
+	}
 }

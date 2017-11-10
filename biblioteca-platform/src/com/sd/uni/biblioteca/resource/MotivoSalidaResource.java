@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import com.sd.uni.biblioteca.dto.motivoSalida.MotivoSalidaDTO;
 import com.sd.uni.biblioteca.dto.motivoSalida.MotivoSalidaResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
-import com.sd.uni.biblioteca.service.motivoEntrada.IMotivoEntradaService;
 import com.sd.uni.biblioteca.service.motivoSalida.IMotivoSalidaService;
 
 @Path("/motivoSalida")

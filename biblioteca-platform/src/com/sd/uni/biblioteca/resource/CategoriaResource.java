@@ -25,7 +25,6 @@ public class CategoriaResource {
 	@Produces("application/json")
 
 	public CategoriaDTO getById(@PathParam("id") Integer categoriaId) throws BibliotecaException {
-		Object categoriaId1 = null;
 		return categoriaService.getById(categoriaId);
 
 	}
@@ -41,6 +40,21 @@ public class CategoriaResource {
 	@Produces("application/xml")
 	public CategoriaResult search(@PathParam("textToFind") String textToFind) {
 		return categoriaService.find(textToFind);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}/{textToFind}")
+	@Produces("application/xml")
+	public CategoriaResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
+		return categoriaService.find(textToFind, page, maxItems);
+	}
+	
+	@GET
+	@Path("/search/{max}/{page}")
+	@Produces("application/xml")
+	public CategoriaResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
+			throws BibliotecaException {
+		return categoriaService.find(null, page, maxItems);
 	}
 
 	@POST

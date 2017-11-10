@@ -1,6 +1,7 @@
 package com.sd.uni.biblioteca.service.entrada;
 
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,20 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
-
-
-
-
-
-
-
 import com.sd.uni.biblioteca.dao.entrada.IEntradaDao;
 import com.sd.uni.biblioteca.dao.entrada.EntradaDaoImpl;
 import com.sd.uni.biblioteca.dao.motivoEntrada.IMotivoEntradaDao;
 import com.sd.uni.biblioteca.domain.entrada.EntradaDomain;
+import com.sd.uni.biblioteca.domain.salida.SalidaDomain;
 import com.sd.uni.biblioteca.dto.entrada.EntradaDTO;
 import com.sd.uni.biblioteca.dto.entrada.EntradaResult;
+import com.sd.uni.biblioteca.dto.salida.SalidaDTO;
+import com.sd.uni.biblioteca.dto.salida.SalidaResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 
@@ -69,6 +65,19 @@ public class EntradaServiceImpl extends BaseServiceImpl<EntradaDTO, EntradaDomai
 	public EntradaResult find(String textToFind) {
 		final List<EntradaDTO> entradas = new ArrayList<>();
 		for (EntradaDomain domain : entradaDao.find(textToFind)) {
+			final EntradaDTO dto = convertDomainToDto(domain);
+			entradas.add(dto);
+		}
+		final EntradaResult entradaResult = new EntradaResult();
+		entradaResult.setEntradas(entradas);
+		return entradaResult;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public EntradaResult find(String textToFind, int page, int maxItems) throws BibliotecaException {
+		final List<EntradaDTO> entradas = new ArrayList<>();
+		for (EntradaDomain domain : entradaDao.find(textToFind, page, maxItems)) {
 			final EntradaDTO dto = convertDomainToDto(domain);
 			entradas.add(dto);
 		}

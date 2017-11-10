@@ -86,5 +86,19 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 		domain.setAutor(autorDao.getById(dto.getAutorId()));
 		return domain;
 	}
+	
+	
+	@Override
+	@Transactional(readOnly = true)
+	public LibroResult find(String textToFind, int page, int maxItems) throws BibliotecaException {
+		final List<LibroDTO> libros = new ArrayList<>();
+		for (LibroDomain domain : libroDao.find(textToFind, page, maxItems)) {
+			final LibroDTO dto = convertDomainToDto(domain);
+			libros.add(dto);
+		}
+		final LibroResult libroResult = new LibroResult();
+		libroResult.setLibros(libros);
+		return libroResult;
+	}
 
 }

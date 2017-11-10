@@ -10,11 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
-import com.sd.uni.biblioteca.domain.categoria.CategoriaDomain;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 
 @Entity
@@ -29,12 +28,8 @@ public class DisponibilidadDomain extends BaseDomain {
 	@Column(name = "cantidad", nullable = false)
 	private Integer _cantidad;
 	
-	@ManyToOne
+	@OneToOne
 	private LibroDomain _libro;
-	
-	@ManyToOne
-	private CategoriaDomain _categoria;
-	
 	
 	public Integer getId() {
 		return _id;
@@ -52,14 +47,6 @@ public class DisponibilidadDomain extends BaseDomain {
 		_libro = libro;
 	}
 	
-	public CategoriaDomain getCategoria() {
-		return _categoria;
-	}
-
-	public void setCategoria(CategoriaDomain categoria) {
-		_categoria = categoria;
-	}
-
 	public Integer getCantidad() {
 		return _cantidad;
 	}

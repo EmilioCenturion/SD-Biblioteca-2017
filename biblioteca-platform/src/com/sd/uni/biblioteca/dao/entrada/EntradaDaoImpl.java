@@ -1,7 +1,10 @@
 package com.sd.uni.biblioteca.dao.entrada;
 
 
+import java.text.ParseException;
 import java.util.List;
+
+
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +25,8 @@ import com.sd.uni.biblioteca.dao.base.BaseDaoImpl;
 
 
 import com.sd.uni.biblioteca.domain.entrada.EntradaDomain;
+import com.sd.uni.biblioteca.domain.salida.SalidaDomain;
+import com.sd.uni.biblioteca.exception.BibliotecaException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -74,6 +80,7 @@ public class EntradaDaoImpl extends BaseDaoImpl<EntradaDomain> implements IEntra
 		return entradas;
 	}
 
+	@Override
 	public List<EntradaDomain> find(String textToFind) {
 		Integer id = null;
 		if (StringUtils.isNumeric(textToFind)) {
@@ -85,6 +92,33 @@ public class EntradaDaoImpl extends BaseDaoImpl<EntradaDomain> implements IEntra
 		return q.list();
 	}
 
+	@Override
+	public List<EntradaDomain> find(String textToFind, int page, int maxItems) throws BibliotecaException {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(EntradaDomain.class);
+
+		if (textToFind != null) {
+			Criterion propertyCriterion = Restrictions.ilike("_descripcion",
+					textToFind);
+			Criterion idCriterion = null;
+			if (StringUtils.isNumeric(textToFind)) {
+				idCriterion = Restrictions.eq("_id",
+						Integer.valueOf(textToFind));
+			}
+			if (idCriterion != null) {
+				criteria.add(Restrictions.or(propertyCriterion, idCriterion));
+			} else {
+				criteria.add(propertyCriterion);
+			}
+		}
+		criteria.addOrder(Order.asc("_descripcion"));
+		criteria.setFirstResult(page * maxItems);
+		criteria.setMaxResults(maxItems);
+		criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+		List<EntradaDomain> entradas = criteria.list();
+		return entradas;
+		
+		}
 }
 
 

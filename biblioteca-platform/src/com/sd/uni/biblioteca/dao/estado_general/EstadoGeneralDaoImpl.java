@@ -38,33 +38,13 @@ public class EstadoGeneralDaoImpl extends BaseDaoImpl<EstadoGeneralDomain> imple
 		return criteria.list();
 	}
 
-	
+	@Override
 	public List<EstadoGeneralDomain> find(String textToFind) {
-
-		Session session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(EstadoGeneralDomain.class);
-		Criterion nameCriterion =Restrictions.ilike("_name", textToFind);
-		Criterion idCriterion = null;
-		if (StringUtils.isNumeric(textToFind)) {
-			idCriterion=Restrictions.eq("_id", Integer.valueOf(textToFind));
-		}
-		
-		if(idCriterion!=null){
-			criteria.add(Restrictions.or(nameCriterion, idCriterion));
-		}else{
-			criteria.add(nameCriterion);
-		}
-		criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-		List<EstadoGeneralDomain> estados_general = criteria.list();
-		return estados_general;
-	}
-
-	public List<EstadoGeneralDomain> find2(String textToFind) {
 		Integer id = null;
 		if (StringUtils.isNumeric(textToFind)) {
 			id = Integer.valueOf(textToFind);
 		}
-		Query q = sessionFactory.getCurrentSession().createQuery("from Estado_generalDomain where _name like :parameter or _id=:id");
+		Query q = sessionFactory.getCurrentSession().createQuery("from Estado_generalDomain where _descripcion like :parameter or _id=:id");
 		q.setParameter("parameter", "%" + textToFind + "%");
 		q.setParameter("id", id);
 		return q.list();

@@ -41,6 +41,11 @@ public class EstadoGeneralResource {
 	public EstadoGeneralResult search(@PathParam("textToFind") String textToFind) {
 		return estado_generalService.find(textToFind);
 	}
+	
+	@POST
+	public EstadoGeneralDTO save(EstadoGeneralDTO estadoGeneral) {
+		return estado_generalService.save(estadoGeneral);
+	}
 
 
 }
