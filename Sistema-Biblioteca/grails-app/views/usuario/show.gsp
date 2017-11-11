@@ -7,52 +7,46 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-	
-		<div class="container-fluid">
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-        	<div class="row">
-            	<div class="panel panel-default">		
-                	<div class="panel-heading">
-						<h4><strong>Información del Usuario</strong></h4>
-					</div>
-					<div class="panel-body">
+	<div class="col-md-12">
+		<h3></h3>
+        <div class="row">
+        	<div class="col-md-12">
+            	<div class="showback">
+                	<h4><i class="fa fa-angle-right"></i> Información del Usuario</h4>
+                	<hr>
 						<div class="row">
 							<div class="col-md-6">
 								<g:if test="${usuarioInstance?.nombre}">
-								<label>Nombre<span class="required-indicator">*</span></label>
+								<label><strong>Nombre: </strong></label>
 								<g:fieldValue class="form-control" bean="${usuarioInstance}"  field="nombre"/>
-							
 								</g:if>
 							</div>
 							<div class="col-md-6">
-								
-								<label>Contraseña<span class="required-indicator"> **********</span></label>
-								
-								
+								<label><strong>Contrasenha: </strong><span>****</span> </label>
 							</div>
+						</div>
+						<div class="row">
 							<div class="col-md-6">
 								<g:if test="${usuarioInstance?.rol}">
-								<label>Rol<span class="required-indicator">*</span></label>
+								<label><strong>Rol: </strong></label>
 								<g:fieldValue class="form-control" bean="${usuarioInstance}" field="rol.nombre"/>
 								</g:if>
 							</div>
-							
-						
 						</div>
-						<g:form>
-							</br>
-							<fieldset class="buttons">
-							<g:link class="btn btn-success" action="edit" id="${userInstance?.id}"><i class="fa fa-pencil"></i> Editar</g:link>
-							</fieldset>
-						</g:form>
+						<div class="row">
+							<div class="col-md-6">
+								<g:form>
+									<br>
+									<fieldset class="buttons">
+									<g:link class="btn btn-success" action="edit" id="${usuarioInstance.getId()}"><i class="fa fa-pencil"></i> Editar</g:link>
+									</fieldset>
+								</g:form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Bootstrap Core JavaScript -->
-    <script src=" ${request.contextPath}/template/js/bootstrap.min.js"></script>
 </body>
 </html>
 

@@ -38,7 +38,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="index.html" class="logo"><b>BIBLIOTECA</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -200,7 +200,7 @@
               	  <h5 class="centered">Administrador</h5>
               	  	
                   <li class="mt">
-                      <a class="active" href="index.html">
+                      <a class="active" href="\Sistema-Biblioteca">
                           <i class="fa fa-dashboard"></i>
                           <span>Inicio</span>
                       </a>
@@ -334,7 +334,9 @@
     <!-- script for this page-->
     <script src="${request.contextPath}/theme/assets/js/sparkline-chart.js"></script>    
 	<script src="${request.contextPath}/theme/assets/js/zabuto_calendar.js"> </script>	
-    
+	
+	
+	¡
    <script type="application/javascript">
         $(document).ready(function () {
         var unique_id = $.gritter.add({

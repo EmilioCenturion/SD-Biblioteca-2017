@@ -8,23 +8,25 @@
 	</head>
 	<body>
        <div class="container-fluid">
-        	<div class="row">
-            	<div class="panel panel-default">		
-                	<div class="panel-heading">
-						<h4><strong>Editar Informacion</strong></h4>
-					</div>
-					<div class="panel-body">
-						<g:form action="update" >
-							<fieldset class="form">
-								<g:render template="form"/>
-							</fieldset>
-							<fieldset class="buttons">
-								<br>
-								<button type="submit" class="btn btn-success" name="edit" value="${usuarioInstance?.id}">
-  									<i class="fa fa-pencil"></i> Actualizar  
-								</button>
-							</fieldset>
-						</g:form>						
+        	<div class="row mt">
+        		<div class="col-lg-12">
+	            	<div class="form-panel">		
+	                	<div class="panel-heading">
+							<h4><strong>Editar Informacion</strong></h4>
+						</div>
+						<div class="panel-body">
+							<g:form action="update" id="${usuarioInstance.getId()}" >
+								<fieldset class="form-horizontal style-form">
+									<g:render template="form"/>
+								</fieldset>
+								<fieldset class="buttons">
+									<br>
+									<button type="submit" class="btn btn-success" name="update" id="${usuarioInstance.getId()}"   >
+	  									<i class="fa fa-pencil"></i> Actualizar
+									</button>
+								</fieldset>
+							</g:form>						
+						</div>
 					</div>
 				</div>
 			</div>

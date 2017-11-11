@@ -10,23 +10,25 @@
 	</head>
 	<body>
         <div class="container-fluid">
-        	<div class="row">
-            	<div class="panel panel-default">		
-                	<div class="panel-heading">
-						<h4><strong>Registrarse</strong></h4>
-					</div>
-					<div class="panel-body">
-						<g:form action="save" >
-							<fieldset class="form">
-								<g:render template="form"/>
-							</fieldset>
-							<fieldset class="buttons">
-								<br>
-								<button type="submit" class="btn btn-primary" name="create" value="${message(code: 'default.button.create.label', default: 'Create')}">
-  									<i class="fa fa-floppy-o"></i> Crear  
-								</button>
-							</fieldset>
-						</g:form>						
+        	<div class="row mt">
+        		<div class="col-lg-12">
+	            	<div class="form-panel">		
+	                	<div class="panel-heading">
+							<h4><strong>Registrarse</strong></h4>
+						</div>
+						<div class="panel-body">
+							<g:form action="save" >
+								<fieldset class="form-horizontal style-form">
+									<g:render template="form"/>
+								</fieldset>
+								<fieldset class="buttons">
+									<br>
+									<button type="submit" class="btn btn-primary" name="create" value="${message(code: 'default.button.create.label', default: 'Create')}">
+	  									<i class="fa fa-floppy-o"></i> Crear  
+									</button>
+								</fieldset>
+							</g:form>						
+						</div>
 					</div>
 				</div>
 			</div>

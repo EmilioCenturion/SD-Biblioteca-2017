@@ -129,10 +129,15 @@ class UsuarioController {
 
 	
 
-	def update(Integer id) {
+	def update(Long id) {
 		def usuarioInstance = usuarioService.getById(id.intValue())
-		usuarioInstance.properties= params
+		//usuarioInstance.properties= params
+		usuarioInstance.setNombre(params.get("nombre"))
+		usuarioInstance.setContrasenha(params.get("contrasenha"))
+		def rolId=params.get("rolId").toString().toInteger()
+		usuarioInstance.setRol(rolService.getById(rolId))
 		usuarioService.save(usuarioInstance)
+		
 		
 		redirect(action: "list")
 	}
