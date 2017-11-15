@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import libro.LibroManager;
 import reserva.ReservaManager;
 import salida.SalidaManager;
 import usuario.UsuarioManager;
@@ -14,6 +15,7 @@ public class WsBiblioteca {
 			entradas();
 			reservas();
 			salidas();
+			libros();
 		}
 	
 		public static void usuarios(){
@@ -31,6 +33,24 @@ public class WsBiblioteca {
 			System.out.println( "\nBUSCAR POR PROPIEDAD" );
 			s.getByPropertyUsuario("Liliana");
 		}
+		
+		public static void libros(){
+			
+			LibroManager s = new LibroManager();
+			s.addLibro("Libro 1", 1980, 1, 2);
+			s.addLibro("Novela 9", 1993 , 2, 3);
+
+			System.out.println( "\nBUSCAR POR ID" );
+			s.getByIdLibro(1);
+
+			System.out.println("\nTODOS LOS DATOS");
+			s.getAllLibros();
+
+			System.out.println( "\nBUSCAR POR PROPIEDAD" );
+			s.getByPropertyLibro("2");
+		}
+
+		
 		public static void entradas(){
 			EntradaManager s = new EntradaManager();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

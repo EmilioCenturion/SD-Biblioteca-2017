@@ -17,13 +17,13 @@ public class UsuarioResourceImpl extends BaseResourceImpl<UsuarioDTO> implements
 		super(UsuarioDTO.class, "/usuario");
 	}
 
-	//@CacheEvict(value = CACHE_REGION, key = "'state_' + #state.id", condition = "#state.id!=null")
+	//@CacheEvict(value = CACHE_REGION, key = "'usuario_' + #usuario.id", condition = "#usuario.id!=null")
 	@Override
 	public UsuarioDTO save(UsuarioDTO usuario) {
 		return super.save(usuario);
 	}
 
-	//@Cacheable(value = CACHE_REGION, key = "'state_' + #id")
+	//@Cacheable(value = CACHE_REGION, key = "'usuario_' + #id")
 	@Override
 	public UsuarioDTO getById(Integer id) {
 		return super.getById(id);

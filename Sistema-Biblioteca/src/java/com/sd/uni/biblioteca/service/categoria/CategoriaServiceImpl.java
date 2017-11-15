@@ -1,0 +1,69 @@
+package com.sd.uni.biblioteca.service.categoria;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sd.uni.biblioteca.beans.categoria.CategoriaB;
+import com.sd.uni.biblioteca.rest.categoria.ICategoriaResource;
+import com.sd.uni.biblioteca.rest.categoria.CategoriaResourceImpl;
+import com.sd.uni.biblioteca.dto.categoria.CategoriaDTO;
+import com.sd.uni.biblioteca.dto.categoria.CategoriaResult;
+import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
+
+@Service("categoriaService")
+public class CategoriaServiceImpl extends BaseServiceImpl<CategoriaB, CategoriaDTO>
+		implements ICategoriaService {
+	@Autowired
+	private ICategoriaResource _categoriaResource=new CategoriaResourceImpl();
+	
+	@Override
+	public CategoriaB save(CategoriaB bean) {
+		final CategoriaDTO dto = convertBeanToDto(bean);
+		final CategoriaDTO categoriaDTO = _categoriaResource.save(dto);
+		return convertDtoToBean(categoriaDTO);
+	}
+
+	@Override
+	public List<CategoriaB> getAll() {
+		final CategoriaResult result = _categoriaResource.getAll();
+		final List<CategoriaDTO> rList = null == result.getCategorias() ? new ArrayList<CategoriaDTO>()
+				: result.getCategorias();
+		final List<CategoriaB> categorias = new ArrayList<CategoriaB>();
+
+		for (CategoriaDTO dto : rList) {
+			final CategoriaB categoriaB = convertDtoToBean(dto);
+			categorias.add(categoriaB);
+		}
+		return categorias;
+	}
+
+	@Override
+	public CategoriaB getById(Integer id) {
+		final CategoriaDTO dto = _categoriaResource.getById(id);
+		return convertDtoToBean(dto);
+	}
+
+	@Override
+	protected CategoriaB convertDtoToBean(CategoriaDTO dto) {
+		final Map<String, String> params = new HashMap<String, String>();
+		params.put("id", String.valueOf(dto.getId()));
+		params.put("descripcion", dto.getDescripcion());
+		final CategoriaB categoriaB = new CategoriaB(params);
+		return categoriaB;
+	}
+
+	@Override
+	protected CategoriaDTO convertBeanToDto(CategoriaB bean) {
+		final CategoriaDTO dto = new CategoriaDTO();
+		dto.setId(bean.getId());
+		dto.setDescripcion(bean.getDescripcion());
+		return dto;
+	}
+
+}

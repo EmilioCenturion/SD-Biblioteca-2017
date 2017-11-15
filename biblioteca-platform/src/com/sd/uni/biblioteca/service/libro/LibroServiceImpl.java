@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sd.uni.biblioteca.dao.autor.IAutorDao;
+import com.sd.uni.biblioteca.dao.categoria.ICategoriaDao;
 import com.sd.uni.biblioteca.dao.libro.ILibroDao;
 import com.sd.uni.biblioteca.dao.libro.LibroDaoImpl;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
@@ -24,6 +25,9 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	
 	@Autowired
 	private IAutorDao autorDao;
+	
+	@Autowired
+	private ICategoriaDao categoriaDao;
 
 	@Override
 	@Transactional
@@ -71,9 +75,10 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	protected LibroDTO convertDomainToDto(LibroDomain domain) {
 		final LibroDTO dto = new LibroDTO();
 		dto.setId(domain.getId());
-		dto.setNombre(dto.getNombre());
-		dto.setAnho(dto.getAnho());
+		dto.setNombre(domain.getNombre());
+		dto.setAnho(domain.getAnho());
 		dto.setAutorId(domain.getAutor().getId());
+		dto.setCategoriaId(domain.getCategoria().getId());
 		return dto;
 	}
 
@@ -84,6 +89,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 		domain.setNombre(dto.getNombre());
 		domain.setAnho(dto.getAnho());
 		domain.setAutor(autorDao.getById(dto.getAutorId()));
+		domain.setCategoria(categoriaDao.getById(dto.getCategoriaId()));
 		return domain;
 	}
 	

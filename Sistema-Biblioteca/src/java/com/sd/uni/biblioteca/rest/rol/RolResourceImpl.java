@@ -24,7 +24,7 @@ public class RolResourceImpl extends BaseResourceImpl<RolDTO> implements
 		return rol;
 	}
 
-	//@Cacheable(value = CACHE_REGION, key = "'country_' + #id")
+	//@Cacheable(value = CACHE_REGION, key = "'rol_' + #id")
 	@Override
 	public RolDTO getById(Integer id) {
 		return super.getById(id);

@@ -11,6 +11,7 @@ public class LibroDTO extends BaseDTO {
 	private static final long serialVersionUID = 1L;
 	private String _nombre;
 	private Integer _autorId;
+	private Integer _categoriaId;
 	private Integer _anho;
 	
 
@@ -39,6 +40,15 @@ public class LibroDTO extends BaseDTO {
 
 	public void setAnho(Integer anho) {
 		_anho = anho;
+	}
+	
+	@XmlElement
+	public Integer getCategoriaId() {
+		return _categoriaId;
+	}
+
+	public void setCategoriaId(Integer _categoriaId) {
+		this._categoriaId = _categoriaId;
 	}
 
 }
