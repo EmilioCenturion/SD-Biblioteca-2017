@@ -254,11 +254,12 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
+                          <i class="glyphicon glyphicon-arrow-up"></i>
                           <span>Salidas</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
+                          <li><a  href="/Sistema-Biblioteca/motivoSalida/create">Crear Motivo de Salida</a></li>
+                          <li><a  href="/Sistema-Biblioteca/motivoSalida/index">Listar Motivos</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
