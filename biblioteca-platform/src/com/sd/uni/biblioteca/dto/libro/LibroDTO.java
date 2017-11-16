@@ -13,6 +13,7 @@ public class LibroDTO extends BaseDTO {
 	private Integer _autorId;
 	private Integer _categoriaId;
 	private Integer _anho;
+	private Integer _cantidad;
 	
 
 	@XmlElement
@@ -40,6 +41,15 @@ public class LibroDTO extends BaseDTO {
 
 	public void setAnho(Integer anho) {
 		_anho = anho;
+	}
+	
+	@XmlElement
+	public Integer getCantidad() {
+		return _cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		_cantidad = cantidad;
 	}
 	
 	@XmlElement

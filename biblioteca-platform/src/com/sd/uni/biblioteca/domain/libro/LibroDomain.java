@@ -33,6 +33,9 @@ public class LibroDomain extends BaseDomain {
 	@Column(name = "anho", nullable = false, unique = true)
 	private Integer _anho;
 	
+	@Column(name = "cantidad", nullable = false, unique = true)
+	private Integer _cantidad;
+	
 	@ManyToOne
 	private AutorDomain _autor;
 	
@@ -64,6 +67,14 @@ public class LibroDomain extends BaseDomain {
 
 	public void setAnho(Integer anho) {
 		_anho = anho;
+	}
+	
+	public Integer getCantidad() {
+		return _cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		_cantidad = cantidad;
 	}
 	
 	public AutorDomain getAutor() {

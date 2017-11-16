@@ -79,6 +79,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 		dto.setAnho(domain.getAnho());
 		dto.setAutorId(domain.getAutor().getId());
 		dto.setCategoriaId(domain.getCategoria().getId());
+		dto.setCantidad(domain.getCantidad());
 		return dto;
 	}
 
@@ -90,6 +91,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 		domain.setAnho(dto.getAnho());
 		domain.setAutor(autorDao.getById(dto.getAutorId()));
 		domain.setCategoria(categoriaDao.getById(dto.getCategoriaId()));
+		domain.setCantidad(dto.getCantidad());
 		return domain;
 	}
 	
