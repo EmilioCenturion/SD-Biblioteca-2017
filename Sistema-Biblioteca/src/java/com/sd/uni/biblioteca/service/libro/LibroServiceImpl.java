@@ -62,7 +62,8 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroB, LibroDTO> implemen
 		final Map<String, String> params = new HashMap<String, String>();
 		params.put("id", String.valueOf(dto.getId()));
 		params.put("nombre", dto.getNombre());
-		params.put("anho",  String.valueOf(dto.getAnho()));
+		params.put("anho", dto.getAnho());
+		params.put("cantidad", String.valueOf(dto.getCantidad()));
 		final LibroB libro = new LibroB(params);
 		libro.setAutor(_autorService.getById(dto.getAutorId()));
 		libro.setCategoria(_categoriaService.getById(dto.getCategoriaId()));
@@ -77,6 +78,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroB, LibroDTO> implemen
 		dto.setCategoriaId(bean.getCategoria().getId());
 		dto.setNombre(bean.getNombre());
 		dto.setAnho(bean.getAnho());
+		dto.setCantidad(bean.getCantidad());
 		return dto;
 	}
 

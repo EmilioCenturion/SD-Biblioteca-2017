@@ -13,9 +13,10 @@ public class LibroB extends BaseBean{
 	
 	private String _nombre;
 	private LibroB _libro;
-	private Integer _anho;
+	private String _anho;
 	private CategoriaB _categoria;
 	private AutorB _autor;
+	private Integer _cantidad;
 	
 	public LibroB(Map<String, String> params) {
 		super(params);
@@ -41,12 +42,12 @@ public class LibroB extends BaseBean{
 	}
 
 
-	public Integer getAnho() {
+	public String getAnho() {
 		return _anho;
 	}
 
 
-	public void setAnho(Integer _anho) {
+	public void setAnho(String _anho) {
 		this._anho = _anho;
 	}
 	
@@ -56,8 +57,10 @@ public class LibroB extends BaseBean{
 			setId(Integer.valueOf(params.get("id")));
 		}
 		setNombre(params.get("nombre"));
-		setAnho(Integer.parseInt(params.get("anho")));
-		
+		setAnho(params.get("anho"));
+		if (!StringUtils.isBlank(params.get("cantidad"))) {
+            setCantidad(Integer.parseInt(params.get("cantidad")));
+        }
 	}
 
 
@@ -78,6 +81,15 @@ public class LibroB extends BaseBean{
 
 	public void setAutor(AutorB _autor) {
 		this._autor = _autor;
+	}
+	
+	public Integer getCantidad() {
+		return _cantidad;
+	}
+
+
+	public void setCantidad(Integer cantidad) {
+		this._cantidad = cantidad;
 	}
 
 

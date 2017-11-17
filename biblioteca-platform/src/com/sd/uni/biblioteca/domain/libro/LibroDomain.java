@@ -31,7 +31,7 @@ public class LibroDomain extends BaseDomain {
 	private String _nombre;
 	
 	@Column(name = "anho", nullable = false, unique = true)
-	private Integer _anho;
+	private String _anho;
 	
 	@Column(name = "cantidad", nullable = false, unique = true)
 	private Integer _cantidad;
@@ -61,11 +61,11 @@ public class LibroDomain extends BaseDomain {
 		_nombre = nombre;
 	}
 	
-	public Integer getAnho() {
+	public String getAnho() {
 		return _anho;
 	}
 
-	public void setAnho(Integer anho) {
+	public void setAnho(String anho) {
 		_anho = anho;
 	}
 	
