@@ -1,6 +1,3 @@
-/WsBiblioteca.class
-/WsEntrada.class
-/WsUsuario.class
 /base/
 /disponibilidad/
 /entrada/
@@ -8,3 +5,6 @@
 /reserva/
 /salida/
 /usuario/
+/WsBiblioteca.class
+/WsEntrada.class
+/WsUsuario.class
