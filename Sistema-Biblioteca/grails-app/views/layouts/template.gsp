@@ -206,6 +206,19 @@
                       </a>
                   </li>
                   
+                    <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="glyphicon glyphicon-book"></i>
+                          <span>Libros</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="/Sistema-Biblioteca/libro/create">Crear Libro</a></li>
+                          <li><a  href="/Sistema-Biblioteca/libro/index">Listar libros</a></li>
+                          <li><a  href="/Sistema-Biblioteca/autor/index">Listar Autores</a></li>
+                          <li><a  href="/Sistema-Biblioteca/categoria/index">Listar categorias de libros</a></li>
+                      </ul>
+                  </li>
+                  
                   <li class="sub-menu">
                       <a href="index.html">
                           <i class="fa fa-dashboard"></i>
@@ -217,39 +230,7 @@
                           <li><a  href="${request.contextPath}/theme/panels.html">Panels</a></li>
                       </ul>
                   </li>
-                  
- 					<li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Libros</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="/Sistema-Biblioteca/libro/create">Crear</a></li>
-                          <li><a  href="/Sistema-Biblioteca/libro/index">Listar</a></li>
-                      </ul>
-                  </li>
-					 <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Autores</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="/Sistema-Biblioteca/autor/create">Crear Autor</a></li>
-                          <li><a  href="/Sistema-Biblioteca/autor/index">Listar Autores</a></li>
-                      </ul>
-                  </li>
 
-					 <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Categorias</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="/Sistema-Biblioteca/categoria/create">Crear Categoria</a></li>
-                          <li><a  href="/Sistema-Biblioteca/categoria/index">Listar Categorias</a></li>
-                      </ul>
-                  </li>
-					
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>

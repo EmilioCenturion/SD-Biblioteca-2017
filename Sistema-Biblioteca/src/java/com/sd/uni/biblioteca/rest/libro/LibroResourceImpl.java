@@ -3,6 +3,9 @@ package com.sd.uni.biblioteca.rest.libro;
 
 //import org.springframework.cache.annotation.CacheEvict;
 //import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.sd.uni.biblioteca.dto.libro.LibroDTO;
@@ -18,19 +21,21 @@ public class LibroResourceImpl extends BaseResourceImpl<LibroDTO> implements
 	}
 
 	@Override
-	//@CacheEvict(value = CACHE_REGION, key = "'libro_' + #dto.id", condition = "#dto.id!=null")
+	@CacheEvict(value = CACHE_REGION, key = "'libros'")
+	@CachePut(value = CACHE_REGION, key = "'libro_' + #libro.id", condition = "#libro.id!=null")
 	public LibroDTO save(LibroDTO dto) {
 		final LibroDTO libro = getWebResource().entity(dto).post(getDtoClass());
 		return libro;
 	}
 
-	//@Cacheable(value = CACHE_REGION, key = "'libro_' + #id")
 	@Override
+	@Cacheable(value = CACHE_REGION, key = "'libro_' + #id")
 	public LibroDTO getById(Integer id) {
 		return super.getById(id);
 	}
 
 	@Override
+	
 	public LibroResult getAll() {
 		LibroResult libros = getWebResource().get(LibroResult.class);
 		/*for (LibroDTO libro : libros.getLibros()) {

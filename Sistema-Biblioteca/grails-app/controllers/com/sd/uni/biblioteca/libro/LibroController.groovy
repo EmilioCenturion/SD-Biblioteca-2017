@@ -10,7 +10,7 @@ import com.sd.uni.biblioteca.service.libro.LibroServiceImpl
 
 class LibroController {
 	
-	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	static allowedMethods = [save: "POST", update: "POST"]
 	
 		//service
 		def ILibroService libroService =new LibroServiceImpl()
@@ -30,9 +30,7 @@ class LibroController {
 		if(null != text && !"".equals(text)){
 			
 			libros = libroService.find(text)
-			
-			
-			
+
 		}else{
 			libros = libroService.getAll()
 		}
@@ -90,5 +88,35 @@ class LibroController {
 		}
 
 		[libroInstance: libroInstance]
+	}
+	
+	def edit(Long id) {
+		def libroInstance = libroService.getById(id.intValue())
+		if (!libroInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'libro.label', default: 'Libro'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
+
+		[libroInstance: libroInstance, autors:autorService.getAll(), categorias:categoriaService.getAll()]
+	}
+
+	
+
+	def update(Long id) {
+		def libroInstance = libroService.getById(id.intValue())
+		libroInstance.setNombre(params.get("nombre"))
+		libroInstance.setAnho(params.get("anho"))
+		def autorId=params.get("autorId").toString().toInteger()
+		libroInstance.setAutor(autorService.getById(autorId))
+		def categoriaId=params.get("categoriaId").toString().toInteger()
+		libroInstance.setCategoria(categoriaService.getById(categoriaId))
+		libroService.save(libroInstance)
+		
+		
+		redirect(action: "list")
 	}
 }

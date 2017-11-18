@@ -48,7 +48,7 @@
 								<table   id="list-report" class="table table-striped table-advance table-hover" cellspacing="0" width="100%">
 									<thead >
 										<tr>
-											<g:sortableColumn property="descripcion" title="Descripcion" />
+											<g:sortableColumn property="descripcion" title="Nombre" />
 											
 											
 											<td>Acciones</td>

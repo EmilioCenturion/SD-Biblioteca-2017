@@ -3,7 +3,12 @@ package com.sd.uni.biblioteca.service.libro;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,9 +33,14 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	
 	@Autowired
 	private ICategoriaDao categoriaDao;
+	
+	@Autowired
+	private CacheManager cacheManager;
 
 	@Override
 	@Transactional
+	@CacheEvict(value= "biblioteca-platform-cache",key = "'libro'")
+	@CachePut(value = "biblioteca-platform-cache", key = "'libro_' + #dto.id", condition="#dto.id!=null")
 	public LibroDTO save(LibroDTO dto) {
 		final LibroDomain domain = convertDtoToDomain(dto);
 		final LibroDomain libroDomain = libroDao.save(domain);
@@ -38,7 +48,8 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
+	@Cacheable(value = "biblioteca-platform-cache", key = "'libro_' + #id")
 	public LibroDTO getById(Integer id) throws BibliotecaException {
 		final LibroDomain domain = libroDao.getById(id);
 		final LibroDTO dto = convertDomainToDto(domain);
@@ -47,10 +58,13 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 
 	@Override
 	@Transactional
+	@Cacheable(value= "biblioteca-platform-cache")
 	public LibroResult getAll() {
 		final List<LibroDTO> libros = new ArrayList<>();
 		for (LibroDomain domain : libroDao.findAll()) {
 			final LibroDTO dto = convertDomainToDto(domain);
+			cacheManager.getCache("biblioteca-platform-cache")
+						.put("libro_" + domain.getId(), domain);
 			libros.add(dto);
 		}
 		final LibroResult libroResult = new LibroResult();

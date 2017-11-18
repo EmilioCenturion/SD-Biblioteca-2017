@@ -24,7 +24,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/bibliotecadb" />
 		<property name="username" value="root" />
-		<property name="password" value="natynaty" />
+		<property name="password" value="root" />
 	</bean>
 
 	<bean id="sessionFactory"

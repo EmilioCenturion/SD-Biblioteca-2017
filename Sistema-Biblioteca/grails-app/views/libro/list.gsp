@@ -16,8 +16,16 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="content-panel" >
+			<div class="col-md-12">
+			<div class="col-sm-4">
 			<h4><i class="fa fa-angle-right"></i> Lista de Libros</h4>
 	       <hr>
+	       </div>
+	       	<div class="col-sm-8">
+                        <a class="btn btn-theme03" href="/Sistema-Biblioteca/libro/create"
+                        role="button"><i class="fa fa-plus"></i> Nuevo libro</a>
+                        </div>
+	       </div>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">
 					${flash.message}

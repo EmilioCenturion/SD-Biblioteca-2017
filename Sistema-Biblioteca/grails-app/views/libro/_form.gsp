@@ -43,7 +43,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 col-sm-2 control-label">Cantidad*</label>
 			<div class="col-sm-4">
-				<g:textField class="form-control" required="" name="cantidad" value="${libroInstance?.cantidad }"/>
+				<g:textField class="form-control" required="" name="cantidad" value="${libroInstance?.cantidad }" disabled="${mode == 'edit'}"/>
 			</div>
 		</div>
 	</div>
