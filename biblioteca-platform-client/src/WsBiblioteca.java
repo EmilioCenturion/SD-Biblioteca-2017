@@ -37,8 +37,8 @@ public class WsBiblioteca {
 		public static void libros(){
 			
 			LibroManager s = new LibroManager();
-			s.addLibro("Libro 1", 1980, 1, 2);
-			s.addLibro("Novela 9", 1993 , 2, 3);
+			s.addLibro("Libro 1", "1980", 1, 2, 10);
+			s.addLibro("Novela 9", "1993" , 2, 3, 5);
 
 			System.out.println( "\nBUSCAR POR ID" );
 			s.getByIdLibro(1);

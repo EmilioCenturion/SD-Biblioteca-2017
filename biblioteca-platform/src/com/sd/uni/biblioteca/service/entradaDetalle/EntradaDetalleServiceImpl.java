@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
 import com.sd.uni.biblioteca.dao.entrada.IEntradaDao;
 import com.sd.uni.biblioteca.dao.entradaDetalle.IEntradaDetalleDao;
 import com.sd.uni.biblioteca.dao.entradaDetalle.EntradaDetalleDaoImpl;
+import com.sd.uni.biblioteca.dao.libro.ILibroDao;
 import com.sd.uni.biblioteca.domain.entradaDetalle.EntradaDetalleDomain;
 import com.sd.uni.biblioteca.dto.entradaDetalle.EntradaDetalleDTO;
 import com.sd.uni.biblioteca.dto.entradaDetalle.EntradaDetalleResult;
@@ -28,6 +30,9 @@ public class EntradaDetalleServiceImpl extends BaseServiceImpl<EntradaDetalleDTO
 	
 	@Autowired
 	private IEntradaDao entradaDao;
+	
+	@Autowired
+	private ILibroDao libroDao;
 	
 	//@Autowired
 	//private ILibroDao libroDao;
@@ -78,6 +83,7 @@ public class EntradaDetalleServiceImpl extends BaseServiceImpl<EntradaDetalleDTO
 	protected EntradaDetalleDTO convertDomainToDto(EntradaDetalleDomain domain) {
 		final EntradaDetalleDTO dto = new EntradaDetalleDTO();
 		dto.setId(domain.getId());
+		dto.setCantidad(domain.getCantidad());
 		dto.setEntradaId(domain.getEntrada().getId());
 		dto.setLibroId(domain.getLibro().getId());
 		return dto;
@@ -87,13 +93,11 @@ public class EntradaDetalleServiceImpl extends BaseServiceImpl<EntradaDetalleDTO
 	protected EntradaDetalleDomain convertDtoToDomain(EntradaDetalleDTO dto) {
 		final EntradaDetalleDomain domain = new EntradaDetalleDomain();
 		domain.setId(dto.getId());
+		domain.setCantidad(dto.getCantidad());
 		domain.setEntrada(entradaDao.getById(dto.getEntradaId()));
-		//domain.setLibro(libroDao.getById(dto.getLibroId()));
+		domain.setLibro(libroDao.getById(dto.getLibroId()));
 		
 		return domain;
 	}
 
 }
-
-
-

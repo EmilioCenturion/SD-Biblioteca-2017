@@ -11,6 +11,7 @@ public class EntradaDetalleDTO extends BaseDTO {
 	private static final long serialVersionUID = 1L;
 	private Integer _libroId;
 	private Integer _entradaId;
+	private Integer _cantidad;
 
 	@XmlElement
 	public Integer getLibroId() {
@@ -32,6 +33,16 @@ public class EntradaDetalleDTO extends BaseDTO {
 
 	public void setEntradaId(Integer entradaId) {
 		_entradaId = entradaId;
+	}
+
+	@XmlElement
+	public Integer getCantidad() {
+		return _cantidad;
+	}
+
+
+	public void setCantidad(Integer _cantidad) {
+		this._cantidad = _cantidad;
 	}
 	
 }

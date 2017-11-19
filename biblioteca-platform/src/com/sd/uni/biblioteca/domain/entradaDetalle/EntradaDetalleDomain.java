@@ -29,6 +29,9 @@ public class EntradaDetalleDomain extends BaseDomain {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer _id;
+	
+	@Column(name = "cantidad", nullable = false)
+	private Integer _cantidad;
 
 	@ManyToOne
 	private LibroDomain _libro;
@@ -45,6 +48,15 @@ public class EntradaDetalleDomain extends BaseDomain {
 		_id = id;
 	}
 
+	public Integer getCantidad() {
+		return _cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		_cantidad = cantidad;
+	}
+
+	
 	public EntradaDomain getEntrada() {
 		return _entrada;
 	}

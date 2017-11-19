@@ -51,10 +51,11 @@ public void addCategorias(){
 	}
 
 	
-	public void addLibro(String nombre, Integer anho, Integer autorId, Integer categoriaId) {
+	public void addLibro(String nombre, String anho, Integer autorId, Integer categoriaId, Integer cantidad) {
 		
 		LibroDTO libroDTO = new LibroDTO();
 		libroDTO.setNombre(nombre);
+		libroDTO.setCantidad(cantidad);
 		libroDTO.setAnho(anho);
 		libroDTO.setAutorId(autorId);
 		libroDTO.setCategoriaId(categoriaId);

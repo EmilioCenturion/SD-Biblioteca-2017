@@ -12,6 +12,7 @@ public class EntradaDetalleB extends BaseBean{
 	private static final long serialVersionUID = 1L;
 	private LibroB _libro;
 	private EntradaB _entrada;
+	private Integer _cantidad;
 	
 	
 	public EntradaDetalleB(Map<String, String> params) {
@@ -37,6 +38,14 @@ public class EntradaDetalleB extends BaseBean{
 		this._entrada = _entrada;
 	}
 	
+	public Integer getCantidad() {
+		return _cantidad;
+	}
+
+	public void setCantidad(Integer _cantidad) {
+		this._cantidad = _cantidad;
+	}
+	
 	@Override
 	protected void create(Map<String, String> params) {
 		if (!StringUtils.isBlank(params.get("id"))) {
@@ -44,5 +53,7 @@ public class EntradaDetalleB extends BaseBean{
 		}
 		
 	}
+
+	
 	
 }

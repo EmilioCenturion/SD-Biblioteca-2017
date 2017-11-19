@@ -15,8 +15,10 @@ import javax.persistence.Table;
 import com.sd.uni.biblioteca.domain.autor.AutorDomain;
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.categoria.CategoriaDomain;
+import com.sd.uni.biblioteca.domain.entradaDetalle.EntradaDetalleDomain;
 import com.sd.uni.biblioteca.domain.motivo_salida.MotivoSalidaDomain;
 import com.sd.uni.biblioteca.domain.prestamo_detalle.PrestamoDetalleDomain;
+import com.sd.uni.biblioteca.domain.salidaDetalle.SalidaDetalleDomain;
 
 
 @Entity
@@ -44,6 +46,13 @@ public class LibroDomain extends BaseDomain {
 	
 	@OneToMany(mappedBy = "_libro")
 	private Set<PrestamoDetalleDomain> _prestamoDetalles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "_libro")
+	private Set<EntradaDetalleDomain> _entradaDetalles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "_libro")
+	private Set<SalidaDetalleDomain> _salidaDetalles = new HashSet<>();
+	
 	
 	public Integer getId() {
 		return _id;
@@ -99,6 +108,22 @@ public class LibroDomain extends BaseDomain {
 
 	public void setPrestamoDetalles(Set<PrestamoDetalleDomain> prestamoDetalles) {
 		this._prestamoDetalles = prestamoDetalles;
+	}
+	
+	public Set<EntradaDetalleDomain> getEntradaDetalles() {
+		return _entradaDetalles;
+	}
+
+	public void setEntradaDetalles(Set<EntradaDetalleDomain> entradaDetalles) {
+		this._entradaDetalles = entradaDetalles;
+	}
+	
+	public Set<SalidaDetalleDomain> getSalidaDetalles() {
+		return _salidaDetalles;
+	}
+
+	public void setSalidaDetalles(Set<SalidaDetalleDomain> salidaDetalles) {
+		this._salidaDetalles = salidaDetalles;
 	}
 }
 

@@ -48,12 +48,18 @@ public class EntradaB extends BaseBean {
 		if (!StringUtils.isBlank(params.get("id"))) {
 			setId(Integer.valueOf(params.get("id")));
 		}
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
 		setDescripcion(params.get("descripcion"));
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-			setFecha(formato.parse(params.get("fecha")));
+			if(null != params.get("fecha")){
+				setFecha(formato.parse(params.get("fecha")));
+			}
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
+		
+
 		}
 	}
 

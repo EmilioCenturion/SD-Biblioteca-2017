@@ -260,9 +260,10 @@
                           <span>Entradas</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="${request.contextPath}/theme/blank.html">Blank Page</a></li>
-                          <li><a  href="${request.contextPath}/theme/login.html">Login</a></li>
-                          <li><a  href="${request.contextPath}/theme/lock_screen.html">Lock Screen</a></li>
+                          <li><a  href="/Sistema-Biblioteca/entrada/create">Crear Entrada de Libros</a></li>
+                      	  <li><a  href="/Sistema-Biblioteca/entrada">Lista de Entrada de Libros</a></li>
+                          <li><a  href="/Sistema-Biblioteca/motivoEntrada/create">Crear Motivo de Entrada</a></li>
+                          <li><a  href="/Sistema-Biblioteca/motivoSalida/index">Lista de Motivos Entrada</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

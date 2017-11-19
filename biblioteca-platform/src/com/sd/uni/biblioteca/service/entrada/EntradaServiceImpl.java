@@ -1,7 +1,6 @@
 package com.sd.uni.biblioteca.service.entrada;
 
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +13,8 @@ import com.sd.uni.biblioteca.dao.entrada.IEntradaDao;
 import com.sd.uni.biblioteca.dao.entrada.EntradaDaoImpl;
 import com.sd.uni.biblioteca.dao.motivoEntrada.IMotivoEntradaDao;
 import com.sd.uni.biblioteca.domain.entrada.EntradaDomain;
-import com.sd.uni.biblioteca.domain.salida.SalidaDomain;
 import com.sd.uni.biblioteca.dto.entrada.EntradaDTO;
 import com.sd.uni.biblioteca.dto.entrada.EntradaResult;
-import com.sd.uni.biblioteca.dto.salida.SalidaDTO;
-import com.sd.uni.biblioteca.dto.salida.SalidaResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 
