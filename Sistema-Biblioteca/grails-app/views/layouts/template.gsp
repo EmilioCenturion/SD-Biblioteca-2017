@@ -263,7 +263,7 @@
                           <li><a  href="/Sistema-Biblioteca/entrada/create">Crear Entrada de Libros</a></li>
                       	  <li><a  href="/Sistema-Biblioteca/entrada">Lista de Entrada de Libros</a></li>
                           <li><a  href="/Sistema-Biblioteca/motivoEntrada/create">Crear Motivo de Entrada</a></li>
-                          <li><a  href="/Sistema-Biblioteca/motivoSalida/index">Lista de Motivos Entrada</a></li>
+                          <li><a  href="/Sistema-Biblioteca/motivoEntrada/index">Lista de Motivos Entrada</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
