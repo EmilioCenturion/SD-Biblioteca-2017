@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.sd.uni.biblioteca.beans.autor.AutorB;
@@ -23,6 +26,8 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorB, AutorDTO>
 	private IAutorResource _autorResource=new AutorResourceImpl();
 	
 	@Override
+	@CacheEvict(value="biblioteca-platform-web-cache", key="'autor_'")
+	@CachePut(value="biblioteca-platform-web-cache", key="'autor_'+#bean.getId()", condition="#bean.getId() != null")
 	public AutorB save(AutorB bean) {
 		final AutorDTO dto = convertBeanToDto(bean);
 		final AutorDTO autorDTO = _autorResource.save(dto);
@@ -30,6 +35,7 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorB, AutorDTO>
 	}
 
 	@Override
+	@Cacheable(value="biblioteca-platform-web-cache", key="'autor_'")	
 	public List<AutorB> getAll() {
 		final AutorResult result = _autorResource.getAll();
 		final List<AutorDTO> rList = null == result.getAutors() ? new ArrayList<AutorDTO>()
@@ -44,6 +50,7 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorB, AutorDTO>
 	}
 
 	@Override
+	@Cacheable(value="biblioteca-platmform-web-cache", key="'autor_' +#id")
 	public AutorB getById(Integer id) {
 		final AutorDTO dto = _autorResource.getById(id);
 		return convertDtoToBean(dto);

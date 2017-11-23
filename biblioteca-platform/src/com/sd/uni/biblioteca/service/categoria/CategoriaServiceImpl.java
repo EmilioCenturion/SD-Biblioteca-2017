@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sd.uni.biblioteca.dao.categoria.ICategoriaDao;
 import com.sd.uni.biblioteca.dao.categoria.CategoriaDaoImpl;
 import com.sd.uni.biblioteca.domain.categoria.CategoriaDomain;
-import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaDTO;
 import com.sd.uni.biblioteca.dto.categoria.CategoriaResult;
-import com.sd.uni.biblioteca.dto.estado_general.EstadoGeneralDTO;
-import com.sd.uni.biblioteca.dto.libro.LibroDTO;
-import com.sd.uni.biblioteca.dto.libro.LibroResult;
 import com.sd.uni.biblioteca.exception.BibliotecaException;
 import com.sd.uni.biblioteca.service.base.BaseServiceImpl;
 
@@ -24,9 +24,14 @@ public class CategoriaServiceImpl extends BaseServiceImpl<CategoriaDTO, Categori
 		implements ICategoriaService {
 	@Autowired
 	private ICategoriaDao categoriaDao;
+	
+	@Autowired
+	private CacheManager cacheManager;
 
 	@Override
 	@Transactional
+	@CacheEvict(value= "biblioteca-platform-cache",key = "'categoria_'")
+	@CachePut(value = "biblioteca-platform-cache", key = "'categoria_' + #dto.id", condition="#dto.id!=null")
 	public CategoriaDTO save(CategoriaDTO dto) {
 		final CategoriaDomain domain = convertDtoToDomain(dto);
 		final CategoriaDomain categoriaDomain = categoriaDao.save(domain);
@@ -34,7 +39,8 @@ public class CategoriaServiceImpl extends BaseServiceImpl<CategoriaDTO, Categori
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
+	@Cacheable(value="biblioteca-platform-cache", key="'categoria_'+#id")
 	public CategoriaDTO getById(Integer id) throws BibliotecaException {
 		final CategoriaDomain domain = categoriaDao.getById(id);
 		final CategoriaDTO dto = convertDomainToDto(domain);
@@ -42,11 +48,14 @@ public class CategoriaServiceImpl extends BaseServiceImpl<CategoriaDTO, Categori
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
+	@Cacheable(value= "biblioteca-platform-cache")
 	public CategoriaResult getAll() {
 		final List<CategoriaDTO> categorias = new ArrayList<>();
 		for (CategoriaDomain domain : categoriaDao.findAll()) {
 			final CategoriaDTO dto = convertDomainToDto(domain);
+			cacheManager.getCache("biblioteca-platform-cache")
+			.put("categoria_" + domain.getId(), domain);
 			categorias.add(dto);
 		}
 		final CategoriaResult categoriaResult = new CategoriaResult();

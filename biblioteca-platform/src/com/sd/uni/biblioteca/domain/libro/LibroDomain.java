@@ -32,10 +32,10 @@ public class LibroDomain extends BaseDomain {
 	@Column(name = "nombre", nullable = false, unique = true)
 	private String _nombre;
 	
-	@Column(name = "anho", nullable = false, unique = true)
+	@Column(name = "anho", nullable = false)
 	private String _anho;
 	
-	@Column(name = "cantidad", nullable = false, unique = true)
+	@Column(name = "cantidad", nullable = false)
 	private Integer _cantidad;
 	
 	@ManyToOne

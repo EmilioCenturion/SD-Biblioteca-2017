@@ -39,7 +39,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 
 	@Override
 	@Transactional
-	@CacheEvict(value= "biblioteca-platform-cache",key = "'libro'")
+	@CacheEvict(value= "biblioteca-platform-cache",key = "'libro_'")
 	@CachePut(value = "biblioteca-platform-cache", key = "'libro_' + #dto.id", condition="#dto.id!=null")
 	public LibroDTO save(LibroDTO dto) {
 		final LibroDomain domain = convertDtoToDomain(dto);
@@ -57,7 +57,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	@Cacheable(value= "biblioteca-platform-cache")
 	public LibroResult getAll() {
 		final List<LibroDTO> libros = new ArrayList<>();
@@ -121,6 +121,28 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 		final LibroResult libroResult = new LibroResult();
 		libroResult.setLibros(libros);
 		return libroResult;
+	}
+
+	@Override
+	@Transactional
+	public LibroDTO entrada(Integer id, Integer cantidad) throws BibliotecaException { 
+		final LibroDomain libroDomain = libroDao.getById(id);
+		libroDomain.setCantidad((libroDomain.getCantidad() + cantidad));
+		final LibroDomain libro = libroDao.save(libroDomain);
+		return convertDomainToDto(libro);
+	}
+	
+	@Override
+	@Transactional
+	public LibroDTO salida(Integer id, Integer cantidad) throws BibliotecaException, StockException{
+		final LibroDomain libroDomain = libroDao.getById(id);
+		if (cantidad <= libroDomain.getCantidad()) {
+			libroDomain.setCantidad((libroDomain.getCantidad() - cantidad));
+			final LibroDomain libro = libroDao.save(libroDomain);
+			return convertDomainToDto(libro);
+		} else {
+			throw new StockException("Stock del libro insuficiente");
+		}
 	}
 
 }
