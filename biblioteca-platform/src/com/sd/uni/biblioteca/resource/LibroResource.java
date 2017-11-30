@@ -7,6 +7,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.sd.uni.biblioteca.dto.libro.LibroDTO;
@@ -23,7 +24,7 @@ public class LibroResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public LibroDTO getById(@PathParam("id") Integer libroId) throws BibliotecaException {
 		return libroService.getById(libroId);
 
@@ -31,6 +32,7 @@ public class LibroResource {
 
 	@GET
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public LibroResult getAll() {
 		return libroService.getAll();
 	}
@@ -38,11 +40,13 @@ public class LibroResource {
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public LibroResult search(@PathParam("textToFind") String textToFind) {
 		return libroService.find(textToFind);
 	}
 
 	@POST
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public LibroDTO save(LibroDTO libro) {
 		
 		return libroService.save(libro);
@@ -51,6 +55,7 @@ public class LibroResource {
 	@GET
 	@Path("/search/{max}/{page}/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public LibroResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
 		return libroService.find(textToFind, page, maxItems);
 	}
@@ -58,6 +63,7 @@ public class LibroResource {
 	@GET
 	@Path("/search/{max}/{page}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public LibroResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
 			throws BibliotecaException {
 		return libroService.find(null, page, maxItems);

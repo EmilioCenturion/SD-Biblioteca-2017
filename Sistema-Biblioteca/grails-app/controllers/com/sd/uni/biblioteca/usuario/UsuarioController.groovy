@@ -7,6 +7,11 @@ import com.sd.uni.biblioteca.beans.usuario.UsuarioB
 import com.sd.uni.biblioteca.service.rol.*
 import com.sd.uni.biblioteca.service.usuario.*
 
+
+import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.dao.DataIntegrityViolationException
+
 class UsuarioController {
 
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -14,11 +19,12 @@ class UsuarioController {
 	//service
 	def IUsuarioService usuarioService =new UsuarioServiceImpl()
 	def IRolService rolService=new RolServiceImpl()
-
+	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_SECRETARY'])
 	def index() {
 		redirect(action: "list", params: params)
 	}
-
+	@Secured(['ROLE_SUPERUSER', 'ROLE_SECRETARY'])
 	def list(Integer max) {
 		def text = params.text
 		usuarioService=new UsuarioServiceImpl()
@@ -98,7 +104,7 @@ class UsuarioController {
 	
 	
 	
-
+	@Secured(['ROLE_SUPERUSER', 'ROLE_SECRETARY'])
 	def show(Long id) {
 		def usuarioInstance = usuarioService.getById(id.intValue())
 		if (!usuarioInstance) {

@@ -7,6 +7,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.sd.uni.biblioteca.dto.autor.AutorDTO;
@@ -27,12 +28,14 @@ public class AutorResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public AutorDTO getById(@PathParam("id") Integer autorId) throws BibliotecaException {
 		return autorService.getById(autorId);
 	}
 
 	@GET
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public AutorResult getAll() {
 		return autorService.getAll();
 	}
@@ -40,11 +43,13 @@ public class AutorResource {
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public AutorResult search(@PathParam("textToFind") String textToFind) {
 		return autorService.find(textToFind);
 	}
 
 	@POST
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public AutorDTO save(AutorDTO autor) {
 		return autorService.save(autor);
 	}
@@ -52,6 +57,7 @@ public class AutorResource {
 	@GET
 	@Path("/search/{max}/{page}/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public AutorResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
 		return autorService.find(textToFind, page, maxItems);
 	}
@@ -59,6 +65,7 @@ public class AutorResource {
 	@GET
 	@Path("/search/{max}/{page}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public AutorResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
 			throws BibliotecaException {
 		return autorService.find(null, page, maxItems);

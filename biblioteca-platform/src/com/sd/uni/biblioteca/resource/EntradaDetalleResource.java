@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.sd.uni.biblioteca.dto.entradaDetalle.EntradaDetalleDTO;
@@ -25,7 +26,7 @@ public class EntradaDetalleResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public EntradaDetalleDTO getById(@PathParam("id") Integer entradaDetalleId) throws BibliotecaException {
 		return entradaDetalleService.getById(entradaDetalleId);
 
@@ -33,6 +34,7 @@ public class EntradaDetalleResource {
 
 	@GET
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public EntradaDetalleResult getAll() {
 		return entradaDetalleService.getAll();
 	}
@@ -40,11 +42,13 @@ public class EntradaDetalleResource {
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public EntradaDetalleResult search(@PathParam("textToFind") String textToFind) {
 		return entradaDetalleService.find(textToFind);
 	}
 
 	@POST
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public EntradaDetalleDTO save(EntradaDetalleDTO entradaDetalle) {
 		
 		return entradaDetalleService.save(entradaDetalle);

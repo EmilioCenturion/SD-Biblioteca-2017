@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.sd.uni.biblioteca.dto.usuario.UsuarioDTO;
@@ -25,7 +26,7 @@ public class UsuarioResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public UsuarioDTO getById(@PathParam("id") Integer usuarioId) throws BibliotecaException {
 		return usuarioService.getById(usuarioId);
 
@@ -33,6 +34,7 @@ public class UsuarioResource {
 
 	@GET
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public UsuarioResult getAll() {
 		return usuarioService.getAll();
 	}
@@ -40,11 +42,13 @@ public class UsuarioResource {
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public UsuarioResult search(@PathParam("textToFind") String textToFind) {
 		return usuarioService.find(textToFind);
 	}
 
 	@POST
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public UsuarioDTO save(UsuarioDTO usuario) {
 		return usuarioService.save(usuario);
 	}
@@ -52,6 +56,7 @@ public class UsuarioResource {
 	@GET
 	@Path("/search/{max}/{page}/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public UsuarioResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page, @PathParam("max") Integer maxItems) throws BibliotecaException {
 		return usuarioService.find(textToFind, page, maxItems);
 	}
@@ -59,6 +64,7 @@ public class UsuarioResource {
 	@GET
 	@Path("/search/{max}/{page}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN", "ROLE_STUDENT"})
 	public UsuarioResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
 			throws BibliotecaException {
 		return usuarioService.find(null, page, maxItems);

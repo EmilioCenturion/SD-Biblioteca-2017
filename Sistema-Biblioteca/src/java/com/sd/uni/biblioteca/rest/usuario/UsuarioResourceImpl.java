@@ -14,23 +14,27 @@ public class UsuarioResourceImpl extends BaseResourceImpl<UsuarioDTO> implements
 		IUsuarioResource {
 
 	public UsuarioResourceImpl() {
+		
 		super(UsuarioDTO.class, "/usuario");
 	}
 
 	//@CacheEvict(value = CACHE_REGION, key = "'usuario_' + #usuario.id", condition = "#usuario.id!=null")
 	@Override
 	public UsuarioDTO save(UsuarioDTO usuario) {
+		setWebResourceBasicAuthFilter();
 		return super.save(usuario);
 	}
 
 	//@Cacheable(value = CACHE_REGION, key = "'usuario_' + #id")
 	@Override
 	public UsuarioDTO getById(Integer id) {
+		setWebResourceBasicAuthFilter();
 		return super.getById(id);
 	}
 
 	@Override
 	public UsuarioResult getAll() {
+		setWebResourceBasicAuthFilter();
 		UsuarioResult usuarios = getWebResource().get(UsuarioResult.class);
 		/*for (UsuarioDTO usuario : usuarios.getUsuarios()) {
 			getCacheManager().getCache(CACHE_REGION).put(
