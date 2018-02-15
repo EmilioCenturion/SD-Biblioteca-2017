@@ -8,6 +8,8 @@ import com.sd.uni.biblioteca.service.categoria.ICategoriaService
 import com.sd.uni.biblioteca.service.libro.ILibroService
 import com.sd.uni.biblioteca.service.libro.LibroServiceImpl
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class LibroController {
 	
 	static allowedMethods = [save: "POST", update: "POST"]
@@ -17,28 +19,31 @@ class LibroController {
 		def IAutorService autorService=new AutorServiceImpl()
 		def ICategoriaService categoriaService=new CategoriaServiceImpl()
 
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
     def index() { 
 		redirect(action: "list", params: params)
 		
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def list(Integer max) {
 		def text = params.text
 		libroService=new LibroServiceImpl()
-		def libros = libroService.getAll()
+		def libros = libroService.find(0,100)
 		
 		if(null != text && !"".equals(text)){
 			
 			libros = libroService.find(text)
 
 		}else{
-			libros = libroService.getAll()
+			libros = libroService.find(0,100)
 		}
 		
 		
 		[libroInstanceList: libros, libroInstanceTotal:libros.size()]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def showResult(Integer max) {
 		def text = params.text
 		libroService=new LibroServiceImpl()
@@ -53,10 +58,13 @@ class LibroController {
 		render (template:"showResult", model:[libroInstanceList: libros, libroInstanceTotal:libros.size()])
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
-		[libroInstance: new LibroB(params), autors:autorService.getAll(), categorias:categoriaService.getAll()]
+		
+		[libroInstance: new LibroB(params), autors:autorService.find(0,100), categorias:categoriaService.find(0,100)]
 	}
 
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def save() {
 		def newLibro = new LibroB(params)
 		newLibro.setAutor(autorService.getById(Integer.valueOf(params.autorId)))
@@ -76,6 +84,7 @@ class LibroController {
 		redirect(action: "list")
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def show(Long id) {
 		def libroInstance = libroService.getById(id.intValue())
 		if (!libroInstance) {
@@ -90,6 +99,7 @@ class LibroController {
 		[libroInstance: libroInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def edit(Long id) {
 		def libroInstance = libroService.getById(id.intValue())
 		if (!libroInstance) {
@@ -104,8 +114,7 @@ class LibroController {
 		[libroInstance: libroInstance, autors:autorService.getAll(), categorias:categoriaService.getAll()]
 	}
 
-	
-
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def update(Long id) {
 		def libroInstance = libroService.getById(id.intValue())
 		libroInstance.setNombre(params.get("nombre"))

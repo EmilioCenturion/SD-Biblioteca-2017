@@ -4,6 +4,7 @@ import com.sd.uni.biblioteca.beans.categoria.CategoriaB
 import com.sd.uni.biblioteca.service.categoria.ICategoriaService
 import com.sd.uni.biblioteca.service.categoria.CategoriaServiceImpl
 import com.sd.uni.biblioteca.service.usuario.IUsuarioService;
+import org.springframework.security.access.annotation.Secured
 
 class CategoriaController {
 	
@@ -12,14 +13,16 @@ class CategoriaController {
 	//service
 	def ICategoriaService categoriaService =new CategoriaServiceImpl()
 
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
     def index() {
 		redirect(action: "list", params: params)
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def list(Integer max) {
 		def text = params.text
 		categoriaService= new CategoriaServiceImpl()
-		def categorias = categoriaService.getAll()
+		def categorias = categoriaService.find(0,100)
 		
 		if(null != text && !"".equals(text)){
 			
@@ -28,18 +31,19 @@ class CategoriaController {
 			
 			
 		}else{
-			categorias = categoriaService.getAll()
+			categorias = categoriaService.find(0,100)
 		}
 		
 		
 		[categoriaInstanceList: categorias, categoriaInstanceTotal:categorias.size()]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
 		[categoriaInstance: new CategoriaB(params)]
 	}
 	
-	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def save() {
 		def newCategoria = new CategoriaB(params)
 		
@@ -57,6 +61,7 @@ class CategoriaController {
 		redirect(action: "list")
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def showResult(Integer max) {
 		def text = params.text
 		categoriaService=new CategoriaServiceImpl()
@@ -71,6 +76,7 @@ class CategoriaController {
 		render (template:"showResult", model:[categoriaInstanceList: categorias, categoriaInstanceTotal:categorias.size()])
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def show(Long id) {
 		def categoriaInstance = categoriaService.getById(id.intValue())
 		if (!categoriaInstance) {
@@ -85,6 +91,7 @@ class CategoriaController {
 		[categoriaInstance: categoriaInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def edit(Long id) {
 		def categoriaInstance = categoriaService.getById(id.intValue())
 		if (!categoriaInstance) {
@@ -99,6 +106,7 @@ class CategoriaController {
 		[categoriaInstance: categoriaInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def update(Long id) {
 		def categoriaInstance = categoriaService.getById(id.intValue())
 		categoriaInstance.setDescripcion(params.get("descripcion"))

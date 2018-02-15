@@ -1,6 +1,7 @@
 package com.sd.uni.biblioteca.entrada
 
 
+import grails.plugin.springsecurity.annotation.Secured
 import java.text.SimpleDateFormat
 
 import org.springframework.dao.DataIntegrityViolationException
@@ -24,6 +25,7 @@ class EntradaController {
 	def IMotivoEntradaService motivoEntradaService=new MotivoEntradaServiceImpl()
 	def IEntradaDetalleService entradaDetalleService=new EntradaDetalleServiceImpl()
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def index() {
 		entradaService=new EntradaServiceImpl()
 		def entradas = entradaService.getAll()
@@ -32,10 +34,12 @@ class EntradaController {
 		[entradaInstanceList: entradas, entradaInstanceTotal:entradas.size()]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
 		[entradaInstance: new EntradaB(params), motivoEntradas: motivoEntradaService.getAll()]
 	}
 
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def save() {
 		def newEntrada = new EntradaB(params)
 		newEntrada.setMotivoEntrada(motivoEntradaService.getById(Integer.valueOf(params.motivoEntradaId)))
@@ -69,6 +73,7 @@ class EntradaController {
 		redirect(action: "show", id: entradaInstance.getId())
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def show(Long id) {
 		def entradaInstance = entradaService.getById(id.intValue())
 		if (!entradaInstance) {
@@ -83,6 +88,7 @@ class EntradaController {
 		[entradaInstance: entradaInstance, entradaDetalles: entradaDetalleService.getAll()]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def newRow(){
 		def idN =  params.get("id")
 		def cant = "cantidad["+ idN + "]"
@@ -91,6 +97,7 @@ class EntradaController {
 		
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def edit(Long id) {
 		def entradaInstance = entradaService.getById(id.intValue())
 		if (!entradaInstance) {
@@ -106,7 +113,7 @@ class EntradaController {
 	}
 
 	
-
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def update(Long id) {
 		def entradaInstance = entradaService.getById(id.intValue())
 		entradaInstance.setDescripcion(params.get("descripcion"))

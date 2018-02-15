@@ -33,6 +33,35 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorB, AutorDTO>
 		final AutorDTO autorDTO = _autorResource.save(dto);
 		return convertDtoToBean(autorDTO);
 	}
+	
+	@Override
+	@Cacheable(value="biblioteca-platform-web-cache", key="'autor_'")	
+	public List<AutorB> find(int page, int maxItems) {
+		final AutorResult result = _autorResource.find(page, maxItems);
+		final List<AutorDTO> uList = null == result.getAutors() ? new ArrayList<AutorDTO>() : result.getAutors();
+		final List<AutorB> autors = new ArrayList<AutorB>();
+
+		for (AutorDTO dto : uList) {
+			final AutorB autor = convertDtoToBean(dto);
+			autors.add(autor);
+		}
+		return autors;
+	}
+	
+	@Override
+	@Cacheable(value="biblioteca-platform-web-cache", key="'autor_'")	
+	public List<AutorB> find(String textToFind, int page, int maxItems) {
+		final AutorResult result = _autorResource.find(page, maxItems);
+		final List<AutorDTO> uList = null == result.getAutors() ? new ArrayList<AutorDTO>() : result.getAutors();
+		final List<AutorB> autors = new ArrayList<AutorB>();
+
+		for (AutorDTO dto : uList) {
+			final AutorB autor = convertDtoToBean(dto);
+			autors.add(autor);
+		}
+		return autors;
+	}
+
 
 	@Override
 	@Cacheable(value="biblioteca-platform-web-cache", key="'autor_'")	
@@ -50,7 +79,7 @@ public class AutorServiceImpl extends BaseServiceImpl<AutorB, AutorDTO>
 	}
 
 	@Override
-	@Cacheable(value="biblioteca-platmform-web-cache", key="'autor_' +#id")
+	@Cacheable(value="biblioteca-platform-web-cache", key="'autor_' +#id")
 	public AutorB getById(Integer id) {
 		final AutorDTO dto = _autorResource.getById(id);
 		return convertDtoToBean(dto);

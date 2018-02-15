@@ -49,7 +49,17 @@
 					</tr>
 					</thead>
 					<tbody id="updateMe">
-						<g:render template="/autor/showResult"  id="updateMe"></g:render>
+						<g:each in="${autorInstanceList}" var="autorInstance" >
+							<tr >
+								<td>
+									<g:fieldValue class="form-control" bean="${autorInstance}" field="nombre"/>
+								</td>
+								<td class="center">
+									<g:link action="edit" class="btn btn-success" id="${autorInstance.getId()}"><i class="fa fa-pencil"></i> Editar</g:link>
+								</td>
+							</tr>
+						</g:each>
+								
 					</tbody>
 				</table>
 				<div class="pagination"></div>

@@ -1,5 +1,7 @@
 package com.sd.uni.biblioteca.rest.base;
 
+import javax.ws.rs.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.CacheManager;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import com.sd.uni.biblioteca.dto.base.BaseDTO;
+import com.sd.uni.biblioteca.service.auth.AuthServiceImpl;
 import com.sd.uni.biblioteca.service.auth.IAuthService;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -20,13 +23,14 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
 	private final Class<DTO> _dtoClass;
 	private final WebResource _webResource;
 	@Autowired
-	private IAuthService authService;
-
-	private static final String BASE_URL = "http://localhost:8080/biblioteca-platform/rest";
+	private IAuthService authService=new AuthServiceImpl();
+	private static final String BASE_URL = "http://localhost:8080/Biblioteca/rest";
 	protected static final String CACHE_REGION = "biblioteca-platform-web-cache";
 	
 
 	@Autowired
+	@Qualifier("grailsCacheManager")
+	private CacheManager _cacheManager;
 	
 	
 	public BaseResourceImpl(Class<DTO> dtoClass, String resourcePath) {
@@ -55,23 +59,11 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
 	 * ya que authService requiere que el usuario este logueado para que pueda funcionar
 	 */
 	public void setWebResourceBasicAuthFilter(){
-		Authentication au = SecurityContextHolder.getContext().getAuthentication();
-
-		String username="";
-		String password="";
-	    if (au.getPrincipal() instanceof UserDetails) {
-	        username=((UserDetails) au.getPrincipal()).getUsername();
-	        password=((UserDetails) au.getPrincipal()).getPassword();
-	        System.out.println("username "+username);
-	    } else {
-	    	System.out.println("el resto" + au.getPrincipal().toString());
-	        
-	    }
-	    System.out.println("usernameeee "+username);
-		//String u = authService.getUsername();
-		//String p = authService.getPassword();
+		
+		String u = authService.getUsername();
+		String p = authService.getPassword();
 				
-		_webResource.addFilter(new HTTPBasicAuthFilter(username,password));		
+		_webResource.addFilter(new HTTPBasicAuthFilter(u,p));		
 	}
 	
 	@Override
@@ -84,5 +76,16 @@ public abstract class BaseResourceImpl<DTO extends BaseDTO> implements IBaseReso
 		return getWebResource().path("/" + id).get(getDtoClass());
 	}
 
+	protected CacheManager getCacheManager() {
+		return _cacheManager;
+	}
+	
+	public WebResource search(String textToFind, int maxItems, int page) {
+		return getWebResource().path("/search/" + "textToFind" + "/" + maxItems + "/" + page);
+	}
+	
+	public WebResource search(int maxItems, int page) {
+		return getWebResource().path("/search/" + maxItems + "/" + page);
+	}
 	
 }

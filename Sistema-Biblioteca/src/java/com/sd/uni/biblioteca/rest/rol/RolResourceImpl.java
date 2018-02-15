@@ -20,6 +20,7 @@ public class RolResourceImpl extends BaseResourceImpl<RolDTO> implements
 	@Override
 	//@CacheEvict(value = CACHE_REGION, key = "'rol_' + #dto.id", condition = "#dto.id!=null")
 	public RolDTO save(RolDTO dto) {
+		setWebResourceBasicAuthFilter();
 		final RolDTO rol = getWebResource().entity(dto).post(getDtoClass());
 		return rol;
 	}
@@ -27,11 +28,13 @@ public class RolResourceImpl extends BaseResourceImpl<RolDTO> implements
 	//@Cacheable(value = CACHE_REGION, key = "'rol_' + #id")
 	@Override
 	public RolDTO getById(Integer id) {
+		setWebResourceBasicAuthFilter();
 		return super.getById(id);
 	}
 
 	@Override
 	public RolResult getAll() {
+		setWebResourceBasicAuthFilter();
 		RolResult rols = getWebResource().get(RolResult.class);
 		/*for (RolDTO rol : rols.getRols()) {
 			getCacheManager().getCache(CACHE_REGION).put("rol_" + rol.getId(), rol);

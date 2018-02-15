@@ -20,11 +20,12 @@ class UsuarioController {
 	def IUsuarioService usuarioService =new UsuarioServiceImpl()
 	def IRolService rolService=new RolServiceImpl()
 	
-	@Secured(['ROLE_SUPERUSER', 'ROLE_SECRETARY'])
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def index() {
 		redirect(action: "list", params: params)
 	}
-	@Secured(['ROLE_SUPERUSER', 'ROLE_SECRETARY'])
+	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def list(Integer max) {
 		def text = params.text
 		usuarioService=new UsuarioServiceImpl()
@@ -60,7 +61,7 @@ class UsuarioController {
 		[usuarioInstanceList: usuarios, usuarioInstanceTotal:usuarios.size()]
 	}
 	
-	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def showResult(Integer max) {
 		def text = params.text
 		usuarioService=new UsuarioServiceImpl()
@@ -77,11 +78,12 @@ class UsuarioController {
 
 	
 	
-
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
 		[usuarioInstance: new UsuarioB(params), rols:rolService.getAll()]
 	}
-
+	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def save() {
 		def newUsuario = new UsuarioB(params)
 		newUsuario.setRol(rolService.getById(Integer.valueOf(params.rolId)))
@@ -104,7 +106,7 @@ class UsuarioController {
 	
 	
 	
-	@Secured(['ROLE_SUPERUSER', 'ROLE_SECRETARY'])
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def show(Long id) {
 		def usuarioInstance = usuarioService.getById(id.intValue())
 		if (!usuarioInstance) {
@@ -119,6 +121,7 @@ class UsuarioController {
 		[usuarioInstance: usuarioInstance]
 	}
 
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def edit(Long id) {
 		def usuarioInstance = usuarioService.getById(id.intValue())
 		if (!usuarioInstance) {
@@ -134,7 +137,7 @@ class UsuarioController {
 	}
 
 	
-
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def update(Long id) {
 		def usuarioInstance = usuarioService.getById(id.intValue())
 		//usuarioInstance.properties= params

@@ -7,4 +7,8 @@ import com.sd.uni.biblioteca.rest.base.IBaseResource;
 
 public interface ILibroResource extends IBaseResource<LibroDTO> {
 	public LibroResult getAll();
+
+	LibroResult find(int page, int maxItems);
+
+	LibroResult find(String textToFind, int maxItems, int page);
 }

@@ -4,6 +4,7 @@ import com.sd.uni.biblioteca.beans.motivoSalida.MotivoSalidaB
 import com.sd.uni.biblioteca.service.motivoSalida.IMotivoSalidaService
 import com.sd.uni.biblioteca.service.motivoSalida.MotivoSalidaServiceImpl
 import com.sd.uni.biblioteca.service.usuario.IUsuarioService;
+import grails.plugin.springsecurity.annotation.Secured
 
 class MotivoSalidaController {
 	
@@ -12,10 +13,12 @@ class MotivoSalidaController {
 	//service
 	def IMotivoSalidaService motivoSalidaService =new MotivoSalidaServiceImpl()
 
+	@Secured(['ROLE_SUPERUSER2', 'ROLE_ADMIN2'])
     def index() {
 		redirect(action: "list", params: params)
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def list(Integer max) {
 		def text = params.text
 		motivoSalidaService= new MotivoSalidaServiceImpl()
@@ -35,11 +38,12 @@ class MotivoSalidaController {
 		[motivoSalidaInstanceList: motivoSalidas, motivoSalidaInstanceTotal:motivoSalidas.size()]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
 		[motivoSalidaInstance: new MotivoSalidaB(params)]
 	}
 	
-	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def save() {
 		def newMotivoSalida = new MotivoSalidaB(params)
 		
@@ -57,6 +61,7 @@ class MotivoSalidaController {
 		redirect(action: "list")
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def showResult(Integer max) {
 		def text = params.text
 		motivoSalidaService=new MotivoSalidaServiceImpl()
@@ -71,6 +76,7 @@ class MotivoSalidaController {
 		render (template:"showResult", model:[motivoSalidaInstanceList: motivoSalidas, motivoSalidaInstanceTotal:motivoSalidas.size()])
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def show(Long id) {
 		def motivoSalidaInstance = motivoSalidaService.getById(id.intValue())
 		if (!motivoSalidaInstance) {
@@ -85,6 +91,7 @@ class MotivoSalidaController {
 		[motivoSalidaInstance: motivoSalidaInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def edit(Long id) {
 		def motivoSalidaInstance = motivoSalidaService.getById(id.intValue())
 		if (!motivoSalidaInstance) {
@@ -99,6 +106,7 @@ class MotivoSalidaController {
 		[motivoSalidaInstance: motivoSalidaInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def update(Long id) {
 		def motivoSalidaInstance = motivoSalidaService.getById(id.intValue())
 		motivoSalidaInstance.setDescripcion(params.get("descripcion"))

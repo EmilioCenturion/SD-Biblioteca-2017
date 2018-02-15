@@ -20,17 +20,20 @@ public class EntradaResourceImpl extends BaseResourceImpl<EntradaDTO> implements
 	//@CacheEvict(value = CACHE_REGION, key = "'entrada_' + #entrada.id", condition = "#entrada.id!=null")
 	@Override
 	public EntradaDTO save(EntradaDTO entrada) {
+		setWebResourceBasicAuthFilter();
 		return super.save(entrada);
 	}
 
 	//@Cacheable(value = CACHE_REGION, key = "'entrada_' + #id")
 	@Override
 	public EntradaDTO getById(Integer id) {
+		setWebResourceBasicAuthFilter();
 		return super.getById(id);
 	}
 
 	@Override
 	public EntradaResult getAll() {
+		setWebResourceBasicAuthFilter();
 		EntradaResult entradas = getWebResource().get(EntradaResult.class);
 		/*for (EntradaDTO entrada : entradas.getEntradas()) {
 			getCacheManager().getCache(CACHE_REGION).put(

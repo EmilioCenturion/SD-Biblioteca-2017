@@ -20,7 +20,7 @@
 					</h4>
 				</div>
 				<div class="panel-body" >
-					Página en desarrollo. ¡Vaya a usuarios mientras!
+					¡Bienvenidos!
 				</div>
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import com.sd.uni.biblioteca.beans.motivoEntrada.MotivoEntradaB
 import com.sd.uni.biblioteca.service.motivoEntrada.IMotivoEntradaService
 import com.sd.uni.biblioteca.service.motivoEntrada.MotivoEntradaServiceImpl
 import com.sd.uni.biblioteca.service.usuario.IUsuarioService;
+import grails.plugin.springsecurity.annotation.Secured
 
 class MotivoEntradaController {
 	
@@ -12,10 +13,12 @@ class MotivoEntradaController {
 	//service
 	def IMotivoEntradaService motivoEntradaService =new MotivoEntradaServiceImpl()
 
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def index() {
 		redirect(action: "list", params: params)
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def list(Integer max) {
 		def text = params.text
 		motivoEntradaService= new MotivoEntradaServiceImpl()
@@ -35,11 +38,12 @@ class MotivoEntradaController {
 		[motivoEntradaInstanceList: motivoEntradas, motivoEntradaInstanceTotal:motivoEntradas.size()]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
 		[motivoEntradaInstance: new MotivoEntradaB(params)]
 	}
 	
-	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def save() {
 		def newMotivoEntrada = new MotivoEntradaB(params)
 		
@@ -57,6 +61,7 @@ class MotivoEntradaController {
 		redirect(action: "list")
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def showResult(Integer max) {
 		def text = params.text
 		motivoEntradaService=new MotivoEntradaServiceImpl()
@@ -71,6 +76,7 @@ class MotivoEntradaController {
 		render (template:"showResult", model:[motivoEntradaInstanceList: motivoEntradas, motivoEntradaInstanceTotal:motivoEntradas.size()])
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def show(Long id) {
 		def motivoEntradaInstance = motivoEntradaService.getById(id.intValue())
 		if (!motivoEntradaInstance) {
@@ -85,6 +91,7 @@ class MotivoEntradaController {
 		[motivoEntradaInstance: motivoEntradaInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def edit(Long id) {
 		def motivoEntradaInstance = motivoEntradaService.getById(id.intValue())
 		if (!motivoEntradaInstance) {
@@ -99,6 +106,7 @@ class MotivoEntradaController {
 		[motivoEntradaInstance: motivoEntradaInstance]
 	}
 	
+	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def update(Long id) {
 		def motivoEntradaInstance = motivoEntradaService.getById(id.intValue())
 		motivoEntradaInstance.setDescripcion(params.get("descripcion"))

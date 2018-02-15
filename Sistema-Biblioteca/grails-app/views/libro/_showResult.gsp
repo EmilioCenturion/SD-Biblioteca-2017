@@ -19,7 +19,7 @@
 		</td>
 
 		<td class="center">
-			<g:link action="edit" class="btn btn-success" id="${libroInstance.getId()}">${}<i class="fa fa-pencil"></i> Editar</g:link>
+			<g:link action="edit" class="btn btn-success" id="${libroInstance.getId()}"><i class="fa fa-pencil"></i> Editar</g:link>
 
 		</td>
 	</tr>

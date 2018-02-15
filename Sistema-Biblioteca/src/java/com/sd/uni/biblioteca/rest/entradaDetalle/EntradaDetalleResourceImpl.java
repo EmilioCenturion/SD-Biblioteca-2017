@@ -20,17 +20,20 @@ public class EntradaDetalleResourceImpl extends BaseResourceImpl<EntradaDetalleD
 	//@CacheEvict(value = CACHE_REGION, key = "'entradaDetalle_' + #entradaDetalle.id", condition = "#entradaDetalle.id!=null")
 	@Override
 	public EntradaDetalleDTO save(EntradaDetalleDTO entradaDetalle) {
+		setWebResourceBasicAuthFilter();
 		return super.save(entradaDetalle);
 	}
 
 	//@Cacheable(value = CACHE_REGION, key = "'entradaDetalle_' + #id")
 	@Override
 	public EntradaDetalleDTO getById(Integer id) {
+		setWebResourceBasicAuthFilter();
 		return super.getById(id);
 	}
 
 	@Override
 	public EntradaDetalleResult getAll() {
+		setWebResourceBasicAuthFilter();
 		EntradaDetalleResult entradaDetalles = getWebResource().get(EntradaDetalleResult.class);
 		/*for (EntradaDetalleDTO entradaDetalle : entradaDetalles.getEntradaDetalles()) {
 			getCacheManager().getCache(CACHE_REGION).put(

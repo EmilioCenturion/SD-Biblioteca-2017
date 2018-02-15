@@ -27,7 +27,7 @@
 	        <div class="jumbotron">
 	          <h1>Lo sentimos</h1>
 	          <p class="lead">No estás autorizado para ver esta página</p>
-	          <p><g:link controller='secure' action='logout' class="btn btn-lg btn-success">Cerrar Sesión</g:link></p>
+	          <p><a class="btn btn-lg btn-success" href="/Sistema-Biblioteca/j_spring_security_logout">Cerrar Sesión</a>
 	        </div>
 	      </div>
 				

@@ -18,6 +18,7 @@ public class MotivoSalidaResourceImpl extends BaseResourceImpl<MotivoSalidaDTO> 
 	@Override
 	//@CacheEvict(value = CACHE_REGION, key = "'rol_' + #dto.id", condition = "#dto.id!=null")
 	public MotivoSalidaDTO save(MotivoSalidaDTO dto) {
+		setWebResourceBasicAuthFilter();
 		final MotivoSalidaDTO motivoSalida = getWebResource().entity(dto).post(getDtoClass());
 		return motivoSalida;
 	}
@@ -25,11 +26,13 @@ public class MotivoSalidaResourceImpl extends BaseResourceImpl<MotivoSalidaDTO> 
 	//@Cacheable(value = CACHE_REGION, key = "'country_' + #id")
 	@Override
 	public MotivoSalidaDTO getById(Integer id) {
+		setWebResourceBasicAuthFilter();
 		return super.getById(id);
 	}
 
 	@Override
 	public MotivoSalidaResult getAll() {
+		setWebResourceBasicAuthFilter();
 		MotivoSalidaResult motivos = getWebResource().get(MotivoSalidaResult.class);
 		return motivos;
 	}
