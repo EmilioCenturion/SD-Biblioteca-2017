@@ -21,6 +21,8 @@ import javax.persistence.Table;
 
 
 
+
+
 import com.sd.uni.biblioteca.domain.base.BaseDomain;
 import com.sd.uni.biblioteca.domain.libro.LibroDomain;
 import com.sd.uni.biblioteca.domain.rol.RolDomain;
@@ -35,6 +37,9 @@ public class SalidaDetalleDomain extends BaseDomain {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, unique = true)
 	private Integer _id;
+	
+	@Column(name = "cantidad", nullable = false)
+	private Integer _cantidad;
 	
 	@ManyToOne
 	private SalidaDomain _salida;
@@ -65,5 +70,12 @@ public class SalidaDetalleDomain extends BaseDomain {
 	public void setLibro(LibroDomain libro) {
 		_libro = libro;
 	}
+	
+	public Integer getCantidad() {
+		return _cantidad;
+	}
 
+	public void setCantidad(Integer cantidad) {
+		_cantidad = cantidad;
+	}
 }

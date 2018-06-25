@@ -51,8 +51,8 @@ public class RoleResource {
 	}
 	
 	/* En la carga inicial con createInitialData necesita que save este desprotegido
-	 * porque si ningún usuario no existe como te autenticas?
-	 * Para solucionar esto se podría tener ya un rol admin y un user admin en la base 
+	 * porque si ningun usuario no existe como te autenticas?
+	 * Para solucionar esto se podria tener ya un rol admin y un user admin en la base 
 	 * de datos cargado a mano para poder securizar esto */
 	@POST
 	//@Secured({"ROLE_SUPERUSER"})//si esta activo, no se podra crear roles iniciales usando los servicios

@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 
 import libro.LibroManager;
 import reserva.ReservaManager;
+import salida.SalidaDetalleManager;
 import salida.SalidaManager;
 import usuario.UsuarioManager;
 import autor.AutorManager;
@@ -10,6 +11,7 @@ import categoria.CategoriaManager;
 
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
+import entrada.EntradaDetalleManager;
 import entrada.EntradaManager;
 
 public class WsBiblioteca {
@@ -23,6 +25,8 @@ public class WsBiblioteca {
 			reservas();
 			salidas();
 			libros();
+			entradaDetalles();
+			salidaDetalles();
 		
 		}
 		
@@ -165,6 +169,46 @@ public class WsBiblioteca {
 			System.out.println("\nTODOS LOS DATOS");
 			s.getAllSalidas();
 		
+		}
+		
+		public static void entradaDetalles(){
+			EntradaDetalleManager s = new EntradaDetalleManager();
+			
+				
+			s.addEntradaDetalle(1, 2 , 678);
+			s.addEntradaDetalle(2, 1, 90);
+			
+			
+		
+			System.out.println( "\nBUSCAR POR ID" );
+			s.getByIdEntradaDetalle(1);
+		
+			System.out.println("\nTODOS LOS DATOS");
+			s.getAllEntradaDetalles();
+		
+			//System.out.println( "\nBUSCAR POR PROPIEDAD" );
+			//s.getByPropertyEntradaDetalle("2");
+			
+		}
+		
+		public static void salidaDetalles(){
+			SalidaDetalleManager s = new SalidaDetalleManager();
+			
+				
+			s.addSalidaDetalle(1, 2 , 87);
+			s.addSalidaDetalle(2, 1, 90);
+			
+			
+		
+			System.out.println( "\nBUSCAR POR ID" );
+			s.getByIdSalidaDetalle(1);
+		
+			System.out.println("\nTODOS LOS DATOS");
+			s.getAllSalidaDetalles();
+		
+			//System.out.println( "\nBUSCAR POR PROPIEDAD" );
+			//s.getByPropertySalidaDetalle("2");
+			
 		}
 
 
