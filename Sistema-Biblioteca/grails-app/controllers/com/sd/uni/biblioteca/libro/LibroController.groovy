@@ -15,9 +15,9 @@ class LibroController {
 	static allowedMethods = [save: "POST", update: "POST"]
 	
 		//service
-		def ILibroService libroService =new LibroServiceImpl()
-		def IAutorService autorService=new AutorServiceImpl()
-		def ICategoriaService categoriaService=new CategoriaServiceImpl()
+		def ILibroService libroService
+		def IAutorService autorService
+		def ICategoriaService categoriaService
 
 	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
     def index() { 
@@ -61,7 +61,7 @@ class LibroController {
 	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def create() {
 		
-		[libroInstance: new LibroB(params), autors:autorService.find(0,100), categorias:categoriaService.find(0,100)]
+		[libroInstance: new LibroB(params), autors:autorService.find(0,200), categorias:categoriaService.find(0,200)]
 	}
 
 	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])

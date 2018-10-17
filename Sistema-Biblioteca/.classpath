@@ -10,7 +10,6 @@
 	<classpathentry kind="src" path="grails-app/utils"/>
 	<classpathentry kind="src" path="test/integration"/>
 	<classpathentry kind="src" path="test/unit"/>
-	<classpathentry kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="BuildConfig.groovy|*DataSource.groovy|UrlMappings.groovy|Config.groovy|BootStrap.groovy|spring/resources.groovy" kind="src" path=".link_to_grails_plugins/asset-pipeline-1.9.9/grails-app/conf">
 		<attributes>
@@ -183,5 +182,60 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.grails.ide.eclipse.core.CLASSPATH_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/biblioteca-platform.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="lib/commons-dbcp-1.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-commons-annotations-4.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-core-4.1.9.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-annotations-2.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-core-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-databind-2.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-jaxrs-1.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-mapper-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-xc-1.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-functions-5.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/javassist-3.17.1-GA.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-bundle-1.14.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-client-1.14.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-core-1.14.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-json-1.14.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-server-1.14.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-servlet-1.14.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-spring-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/jettison-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="lib/persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/simple-spring-memcached-3.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/spring-aop-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-beans-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-cache-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/spring-cache-3.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-support-3.2.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-expression-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-jdbc-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-orm-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-security-config-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-security-core-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-security-web-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-tx-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/spring-web-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/xmemcached-2.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/xmemcached-provider-3.5.0.jar"/>
 	<classpathentry kind="output" path="target-eclipse/classes"/>
 </classpath>

@@ -8,6 +8,7 @@
 	<property name="build" location="build" />
 	<property name="dist" location="dist" />
 	<property name="libs" location="WebContent/WEB-INF/lib" />
+	<property name="libstomc" location="WebContent/WEB-INF/lib-tomcat" />
 	<property name="jarclass" location="${build}/com/sd/uni/biblioteca/dto" />
 
 	<target name="init">
@@ -21,6 +22,9 @@
 		<javac srcdir="${src}" destdir="${build}">
 			<classpath>
 				<fileset dir="${libs}">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="${libstomc}">
 					<include name="*.jar" />
 				</fileset>
 			</classpath>
@@ -38,6 +42,7 @@
 			<exclude name="com/sd/uni/biblioteca/domain/**" />
 			<exclude name="com/sd/uni/biblioteca/resource/**" />
 			<exclude name="com/sd/uni/biblioteca/test/**" />
+			<exclude name="com/sd/uni/biblioteca/utils/**" />
 		</jar>
 
 	</target>
@@ -53,6 +58,9 @@
 		<path id="compile.classpath">
 			<fileset dir="WebContent/WEB-INF/lib">
 				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="WebContent/WEB-INF/lib-tomcat">
+							<include name="*.jar"/>
 			</fileset>
 		</path>
 

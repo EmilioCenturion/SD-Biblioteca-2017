@@ -7,9 +7,11 @@ import salida.SalidaManager;
 import usuario.UsuarioManager;
 import autor.AutorManager;
 import categoria.CategoriaManager;
+import cliente.ClienteManager;
 
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
+import entrada.EntradaDetalleManager;
 import entrada.EntradaManager;
 
 public class WsBiblioteca {
@@ -23,6 +25,21 @@ public class WsBiblioteca {
 			reservas();
 			salidas();
 			libros();
+			entradaDetalles();
+			addClientes();
+		
+		}
+		
+		public static void addClientes(){
+			
+			ClienteManager c = new ClienteManager();
+			c.addCliente("Liliana", "Lopez", "5413213/8", "Barrio Pacu Cua", "03234654", 5413214, "lilianalopez0710@gmail.com");
+			c.addCliente("Yoochun", "Micky", "13165465/8", "Barrio San Miguel", "03234654", 3656121, "yoochunmicky6002@gmail.com");
+			//c.addCliente("Silvina", "Pereira", "6953153/8", "Barrio San Juan", "03234654", 546548, "prueba@hotmail.com");
+			//c.addCliente("Margarita", "Aranda", "656898/8", "Barrio las Carmelitas", "03234654", 1312156, "prueba@hotmail.com");
+			System.out.println("\nTODOS LOS DATOS");
+			c.getAllClientes();
+			
 		
 		}
 		
@@ -165,6 +182,26 @@ public class WsBiblioteca {
 			System.out.println("\nTODOS LOS DATOS");
 			s.getAllSalidas();
 		
+		}
+		
+		public static void entradaDetalles(){
+			EntradaDetalleManager s = new EntradaDetalleManager();
+			
+				
+			s.addEntradaDetalle(1, 2 , 678);
+			s.addEntradaDetalle(2, 1, 90);
+			
+			
+		
+			System.out.println( "\nBUSCAR POR ID" );
+			s.getByIdEntradaDetalle(1);
+		
+			System.out.println("\nTODOS LOS DATOS");
+			s.getAllEntradaDetalles();
+		
+			//System.out.println( "\nBUSCAR POR PROPIEDAD" );
+			//s.getByPropertyEntradaDetalle("2");
+			
 		}
 
 

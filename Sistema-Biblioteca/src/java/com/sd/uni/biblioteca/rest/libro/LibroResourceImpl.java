@@ -21,8 +21,8 @@ public class LibroResourceImpl extends BaseResourceImpl<LibroDTO> implements
 	}
 
 	@Override
-	@CacheEvict(value = CACHE_REGION, key = "'libros'")
-	@CachePut(value = CACHE_REGION, key = "'libro_' + #libro.id", condition = "#libro.id!=null")
+	//@CacheEvict(value = CACHE_REGION, key = "'libros'")
+	//@CachePut(value = CACHE_REGION, key = "'libro_' + #libro.id", condition = "#libro.id!=null")
 	public LibroDTO save(LibroDTO dto) {
 		setWebResourceBasicAuthFilter();
 		final LibroDTO libro = getWebResource().entity(dto).post(getDtoClass());
@@ -30,7 +30,7 @@ public class LibroResourceImpl extends BaseResourceImpl<LibroDTO> implements
 	}
 
 	@Override
-	@Cacheable(value = CACHE_REGION, key = "'libro_' + #id")
+	//@Cacheable(value = CACHE_REGION, key = "'libro_' + #id")
 	public LibroDTO getById(Integer id) {
 		setWebResourceBasicAuthFilter();
 		return super.getById(id);
@@ -41,9 +41,9 @@ public class LibroResourceImpl extends BaseResourceImpl<LibroDTO> implements
 	public LibroResult getAll() {
 		setWebResourceBasicAuthFilter();
 		LibroResult libros = getWebResource().get(LibroResult.class);
-		for (LibroDTO libro : libros.getLibros()) {
+		/*for (LibroDTO libro : libros.getLibros()) {
 			getCacheManager().getCache(CACHE_REGION).put("libro_" + libro.getId(), libro);
-		}
+		}*/
 		return libros;
 	}
 	

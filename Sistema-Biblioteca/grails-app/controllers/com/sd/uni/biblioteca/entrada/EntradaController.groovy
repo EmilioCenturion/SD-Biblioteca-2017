@@ -20,10 +20,10 @@ class EntradaController {
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
 	//service
-	def IEntradaService entradaService =new EntradaServiceImpl()
-	def ILibroService libroService =new LibroServiceImpl()
-	def IMotivoEntradaService motivoEntradaService=new MotivoEntradaServiceImpl()
-	def IEntradaDetalleService entradaDetalleService=new EntradaDetalleServiceImpl()
+	def IEntradaService entradaService
+	def ILibroService libroService
+	def IMotivoEntradaService motivoEntradaService
+	def IEntradaDetalleService entradaDetalleService
 	
 	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
 	def index() {

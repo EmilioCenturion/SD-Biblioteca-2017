@@ -11,7 +11,7 @@ class AutorController {
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
 	//service
-	def IAutorService autorService =new AutorServiceImpl()
+	def IAutorService autorService
 
 	@Secured(['ROLE_SUPERUSER', 'ROLE_ADMIN'])
     def index() {

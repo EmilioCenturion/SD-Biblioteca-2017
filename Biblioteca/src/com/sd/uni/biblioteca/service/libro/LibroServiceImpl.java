@@ -39,8 +39,8 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 
 	@Override
 	@Transactional
-	@CacheEvict(value= "biblioteca-platform-cache",key = "'libro_'")
-	@CachePut(value = "biblioteca-platform-cache", key = "'libro_' + #dto.id", condition="#dto.id!=null")
+	//@CacheEvict(value= "biblioteca-platform-cache",key = "'libro_'")
+	//@CachePut(value = "biblioteca-platform-cache", key = "'libro_' + #dto.id", condition="#dto.id!=null")
 	public LibroDTO save(LibroDTO dto) {
 		final LibroDomain domain = convertDtoToDomain(dto);
 		final LibroDomain libroDomain = libroDao.save(domain);
@@ -49,7 +49,7 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value = "biblioteca-platform-cache", key = "'libro_' + #id")
+	//@Cacheable(value = "biblioteca-platform-cache", key = "'libro_' + #id")
 	public LibroDTO getById(Integer id) throws BibliotecaException {
 		final LibroDomain domain = libroDao.getById(id);
 		final LibroDTO dto = convertDomainToDto(domain);
@@ -58,13 +58,14 @@ public class LibroServiceImpl extends BaseServiceImpl<LibroDTO, LibroDomain, Lib
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value= "biblioteca-platform-cache")
+	//@Cacheable(value= "biblioteca-platform-cache")
 	public LibroResult getAll() {
 		final List<LibroDTO> libros = new ArrayList<>();
 		for (LibroDomain domain : libroDao.findAll()) {
 			final LibroDTO dto = convertDomainToDto(domain);
-			cacheManager.getCache("biblioteca-platform-cache")
+		/*cacheManager.getCache("biblioteca-platform-cache")
 						.put("libro_" + domain.getId(), domain);
+						*/
 			libros.add(dto);
 		}
 		final LibroResult libroResult = new LibroResult();
