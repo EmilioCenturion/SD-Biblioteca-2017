@@ -13,6 +13,7 @@ public class SalidaDetalleDTO extends BaseDTO {
 	private static final long serialVersionUID = 1L;
 	private Integer _salidaID;
 	private Integer _libroId;
+	private Integer cantidad;
 	
 	@XmlElement
 	public Integer getSalidaId() {
@@ -24,12 +25,22 @@ public class SalidaDetalleDTO extends BaseDTO {
 		return _libroId;
 	}
 	
+	@XmlElement
+	public Integer getCantidad() {
+		return cantidad;
+	}
+	
 	public void setSalidaId(Integer salidaId) {
 		_salidaID = salidaId;
 	}
 	
 	public void setLibroId(Integer libroId) {
 		_libroId = libroId;
+	}
+	
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
 	}
 	
 }

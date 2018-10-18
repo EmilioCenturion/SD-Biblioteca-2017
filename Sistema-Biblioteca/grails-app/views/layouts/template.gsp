@@ -272,8 +272,10 @@
                           <span>Salidas</span>
                       </a>
                       <ul class="sub">
+                      	  <li><a  href="/Sistema-Biblioteca/salida/create">Listar Salidas</a></li>
+                      	  <li><a  href="/Sistema-Biblioteca/salida/create">Crear Salida</a></li>
                           <li><a  href="/Sistema-Biblioteca/motivoSalida/create">Crear Motivo de Salida</a></li>
-                          <li><a  href="/Sistema-Biblioteca/motivoSalida/index">Listar Motivos</a></li>
+                          <li><a  href="/Sistema-Biblioteca/motivoSalida/list">Listar Motivos</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.sd.uni.biblioteca.dto.salida.SalidaDTO;
@@ -25,7 +26,7 @@ public class SalidaResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN"})
 	public SalidaDTO getById(@PathParam("id") Integer salidaId) throws BibliotecaException {
 		return salidaService.getById(salidaId);
 
@@ -33,6 +34,7 @@ public class SalidaResource {
 
 	@GET
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN"})
 	public SalidaResult getAll() {
 		return salidaService.getAll();
 	}
@@ -40,11 +42,13 @@ public class SalidaResource {
 	@GET
 	@Path("search/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN"})
 	public SalidaResult search(@PathParam("textToFind") String textToFind) {
 		return salidaService.find(textToFind);
 	}
 
 	@POST
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN"})
 	public SalidaDTO save(SalidaDTO salida) {
 		
 		return salidaService.save(salida);
@@ -53,6 +57,7 @@ public class SalidaResource {
 	@GET
 	@Path("/search/{max}/{page}/{textToFind}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN"})
 	public SalidaResult search(@PathParam("textToFind") String textToFind, @PathParam("page") Integer page,
 			@PathParam("max") Integer maxItems) throws BibliotecaException, ParseException {
 		return salidaService.find(textToFind, page, maxItems);
@@ -61,6 +66,7 @@ public class SalidaResource {
 	@GET
 	@Path("/search/{max}/{page}")
 	@Produces("application/xml")
+	@Secured({"ROLE_SUPERUSER", "ROLE_ADMIN"})
 	public SalidaResult search(@PathParam("page") Integer page, @PathParam("max") Integer maxItems)
 			throws BibliotecaException, ParseException {
 		return salidaService.find(null, page, maxItems);

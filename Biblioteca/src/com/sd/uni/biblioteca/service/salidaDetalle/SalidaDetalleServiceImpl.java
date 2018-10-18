@@ -77,8 +77,10 @@ public class SalidaDetalleServiceImpl extends BaseServiceImpl<SalidaDetalleDTO, 
 	protected SalidaDetalleDTO convertDomainToDto(SalidaDetalleDomain domain) {
 		final SalidaDetalleDTO dto = new SalidaDetalleDTO();
 		dto.setId(domain.getId());
+		dto.setCantidad(domain.getCantidad());
 		dto.setSalidaId(domain.getSalida().getId());
 		dto.setLibroId(domain.getLibro().getId());
+		
 		return dto;
 	}
 
@@ -86,8 +88,10 @@ public class SalidaDetalleServiceImpl extends BaseServiceImpl<SalidaDetalleDTO, 
 	protected SalidaDetalleDomain convertDtoToDomain(SalidaDetalleDTO dto) {
 		final SalidaDetalleDomain domain = new SalidaDetalleDomain();
 		domain.setId(dto.getId());
+		domain.setCantidad(dto.getCantidad());
 		domain.setSalida(salidaDao.getById(dto.getSalidaId()));
 		domain.setLibro(libroDao.getById(dto.getLibroId()));
+		
 		
 		return domain;
 	}

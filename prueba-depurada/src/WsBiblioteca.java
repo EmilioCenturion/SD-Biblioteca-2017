@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 
 import libro.LibroManager;
 import reserva.ReservaManager;
+import salida.SalidaDetalleManager;
 import salida.SalidaManager;
 import usuario.UsuarioManager;
 import autor.AutorManager;
@@ -26,6 +27,7 @@ public class WsBiblioteca {
 			salidas();
 			libros();
 			entradaDetalles();
+<<<<<<< HEAD
 			addClientes();
 		
 		}
@@ -40,6 +42,9 @@ public class WsBiblioteca {
 			System.out.println("\nTODOS LOS DATOS");
 			c.getAllClientes();
 			
+=======
+			salidaDetalles();
+>>>>>>> 18a1d8575ca7fc89244370a4be3e0e6167b1a88d
 		
 		}
 		
@@ -203,6 +208,29 @@ public class WsBiblioteca {
 			//s.getByPropertyEntradaDetalle("2");
 			
 		}
+<<<<<<< HEAD
+=======
+		
+		public static void salidaDetalles(){
+			SalidaDetalleManager s = new SalidaDetalleManager();
+			
+				
+			s.addSalidaDetalle(1, 2 , 87);
+			s.addSalidaDetalle(2, 1, 90);
+			
+			
+		
+			System.out.println( "\nBUSCAR POR ID" );
+			s.getByIdSalidaDetalle(1);
+		
+			System.out.println("\nTODOS LOS DATOS");
+			s.getAllSalidaDetalles();
+		
+			//System.out.println( "\nBUSCAR POR PROPIEDAD" );
+			//s.getByPropertySalidaDetalle("2");
+			
+		}
+>>>>>>> 18a1d8575ca7fc89244370a4be3e0e6167b1a88d
 
 
 }

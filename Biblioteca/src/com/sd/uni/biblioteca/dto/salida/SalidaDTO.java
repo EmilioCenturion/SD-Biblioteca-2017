@@ -14,7 +14,7 @@ public class SalidaDTO extends BaseDTO {
 	private Date _fecha;
 	private String _descripcion;
 	private Integer _motivoId;
-
+	
 	@XmlElement
 	public Date getFecha() {
 		return _fecha;

@@ -51,4 +51,3 @@
 	<!--Para usar la anotacion @Secured de Spring -->
 	<sec:global-method-security secured-annotations="enabled" />
 </beans>
-
